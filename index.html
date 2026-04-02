@@ -1572,12 +1572,22 @@
     submitBtn.disabled = true;
     submitBtn.textContent = 'Sending…';
 
-    // Simulate async submit (replace with real endpoint)
-    await new Promise(r => setTimeout(r, 1200));
+    const data = new FormData(form);
+    const res = await fetch('https://formspree.io/f/xaqldydz', {
+      method: 'POST',
+      body: data,
+      headers: { 'Accept': 'application/json' }
+    });
 
-    form.querySelectorAll('input, select, textarea').forEach(el => el.style.display = 'none');
-    submitBtn.style.display = 'none';
-    successMsg.classList.add('show');
+    if (res.ok) {
+      form.querySelectorAll('input, select, textarea').forEach(el => el.style.display = 'none');
+      submitBtn.style.display = 'none';
+      successMsg.classList.add('show');
+    } else {
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Request Booking';
+      alert('Something went wrong. Please call or text (818) 588-2669 to book.');
+    }
   });
 
   /* ─── SMOOTH SCROLL offset for fixed nav ─── */
