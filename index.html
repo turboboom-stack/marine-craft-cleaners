@@ -446,31 +446,6 @@
       line-height: 1.08; letter-spacing: -0.02em;
     }
 
-
-    /* ─── STICKY MOBILE CTA ─── */
-    .mobile-sticky-cta {
-      display: none !important;
-      position: fixed; bottom: 0; left: 0; right: 0; z-index: 900;
-      padding: 0.75rem 1.25rem calc(0.75rem + env(safe-area-inset-bottom));
-      background: rgba(14,29,54,0.97);
-      backdrop-filter: blur(10px);
-      border-top: 1px solid rgba(91,184,204,0.2);
-    }
-    .mobile-sticky-cta a {
-      display: block; text-align: center;
-      background: var(--aqua); color: var(--navy-faint);
-      font-weight: 700; font-size: 1rem; letter-spacing: 0.04em;
-      padding: 0.9rem; border-radius: 6px; text-decoration: none;
-      box-shadow: 0 4px 16px rgba(91,184,204,0.4);
-      transition: background 0.2s ease, transform 0.15s ease;
-    }
-    .mobile-sticky-cta a:hover { background: var(--aqua-light); }
-    .mobile-sticky-cta a:active { transform: scale(0.98); }
-    @media (max-width: 768px) {
-      .mobile-sticky-cta { display: block !important; }
-      footer { padding-bottom: 5rem; }
-    }
-
     /* ─── SCROLL REVEAL ─── */
     .reveal {
       opacity: 0; transform: translateY(28px);
@@ -1646,8 +1621,5 @@
   });
 </script>
 
-<div class="mobile-sticky-cta">
-  <a href="#booking">Book Now</a>
-</div>
 </body>
 </html>
