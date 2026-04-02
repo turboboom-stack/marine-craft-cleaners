@@ -105,7 +105,7 @@
       padding: 0.5rem 1.35rem; border-radius: 4px;
       font-weight: 700 !important; font-size: 0.84rem !important;
       letter-spacing: 0.04em !important;
-      box-shadow: 0 2px 8px rgba(91,184,204,0.20);
+      box-shadow: none;
       transition: background 0.2s ease, transform 0.15s var(--ease-spring), box-shadow 0.2s ease !important;
     }
     .btn-nav-book:hover {
@@ -135,12 +135,13 @@
       background: rgba(14, 29, 54, 0.97);
       backdrop-filter: blur(12px);
       padding: 1.5rem 2rem 2rem;
-      transform: translateY(-110%);
-      transition: transform 0.3s var(--ease-out);
+      transform: translateY(-200%);
+      visibility: hidden;
+      transition: transform 0.3s var(--ease-out), visibility 0.3s;
       z-index: 799;
       border-bottom: 1px solid rgba(91,184,204,0.15);
     }
-    .nav-mobile.open { transform: translateY(0); }
+    .nav-mobile.open { transform: translateY(0); visibility: visible; }
     .nav-mobile ul { list-style: none; display: flex; flex-direction: column; gap: 1.25rem; margin-bottom: 1.5rem; }
     .nav-mobile ul a { color: rgba(255,255,255,0.8); text-decoration: none; font-size: 1rem; font-weight: 500; }
     .nav-mobile .btn-nav-book { display: inline-block; text-decoration: none; }
