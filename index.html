@@ -68,7 +68,7 @@
     /* ─── NAV ─── */
     nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 800;
-      height: 76px;
+      height: 84px;
       display: flex; align-items: center; justify-content: space-between;
       padding: 0 3rem;
       transition: background 0.35s var(--ease-out), border-color 0.35s ease, backdrop-filter 0.35s ease;
@@ -80,7 +80,7 @@
       border-color: rgba(91, 184, 204, 0.12);
     }
     .nav-logo { display: flex; align-items: center; gap: 0.875rem; text-decoration: none; }
-    .nav-logo img { height: 56px; width: auto; border-radius: 6px; }
+    .nav-logo img { height: 68px; width: auto; border-radius: 6px; }
     .nav-logo-name {
       font-family: var(--font-display);
       font-weight: 700; font-size: 1.5rem;
@@ -105,7 +105,7 @@
       padding: 0.5rem 1.35rem; border-radius: 4px;
       font-weight: 700 !important; font-size: 0.84rem !important;
       letter-spacing: 0.04em !important;
-      box-shadow: 0 2px 12px rgba(91,184,204,0.35);
+      box-shadow: 0 2px 8px rgba(91,184,204,0.20);
       transition: background 0.2s ease, transform 0.15s var(--ease-spring), box-shadow 0.2s ease !important;
     }
     .btn-nav-book:hover {
@@ -131,7 +131,7 @@
 
     /* Mobile nav drawer */
     .nav-mobile {
-      position: fixed; top: 76px; left: 0; right: 0;
+      position: fixed; top: 84px; left: 0; right: 0;
       background: rgba(14, 29, 54, 0.97);
       backdrop-filter: blur(12px);
       padding: 1.5rem 2rem 2rem;
@@ -147,7 +147,7 @@
 
     /* ─── HERO ─── */
     .hero {
-      position: relative; height: 100vh; min-height: 700px;
+      position: relative; height: 88vh; min-height: 640px;
       display: flex; align-items: center;
       background: var(--navy-faint); overflow: hidden;
     }
@@ -210,7 +210,7 @@
     .hero-content {
       position: relative; z-index: 10;
       max-width: 1240px; margin: 0 auto;
-      padding: 0 3rem; padding-top: 68px;
+      padding: 0 3rem; padding-top: 84px;
       width: 100%;
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -897,7 +897,7 @@
       .nav-links { display: none; }
       .nav-hamburger { display: flex; }
       .section-inner { padding: 4rem 1.5rem; }
-      .hero-content { padding: 0 1.5rem; padding-top: 68px; }
+      .hero-content { padding: 0 1.5rem; padding-top: 84px; }
       .hero-service-area { display: none; }
       .trust-strip-inner { padding: 1.25rem 1.5rem; gap: 1.25rem; }
       .pricing-grid { max-width: 100%; }
@@ -1050,6 +1050,7 @@
   </div>
 </div>
 
+
 <!-- ─── ABOUT ─── -->
 <section id="about">
   <div class="section-inner">
@@ -1105,6 +1106,136 @@
   </div>
 </section>
 
+<!-- ─── PRICING ─── -->
+<section id="pricing">
+  <div class="section-inner">
+    <div class="pricing-header reveal">
+      <div class="section-eyebrow">Transparent Pricing</div>
+      <h2 class="section-title">Clean boat. Clear price.<br>No surprises.</h2>
+      <p>All packages include travel to your location. Pricing is based on boat length. What you see is what you pay.</p>
+    </div>
+
+    <div class="pricing-grid">
+
+      <!-- Package 1 -->
+      <div class="pricing-card reveal reveal-d1">
+        <div class="card-header">
+          <div class="card-tier">Package 01</div>
+          <div class="card-name">The Essential Wash</div>
+          <div class="card-desc">A thorough exterior wash that leaves your hull gleaming and your topside spotless. Done right, every time.</div>
+        </div>
+        <div class="card-prices">
+          <div class="price-note">Starting from</div>
+          <div class="price-row">
+            <span class="price-size">Under 25 ft</span>
+            <span class="price-amount">$100</span>
+          </div>
+          <div class="price-row">
+            <span class="price-size">25 – 35 ft</span>
+            <span class="price-amount">$120</span>
+          </div>
+          <div class="price-row">
+            <span class="price-size">35 ft +</span>
+            <span class="price-amount">$150+</span>
+          </div>
+        </div>
+        <div class="card-features">
+          <ul>
+            <li>Exterior hull wash &amp; rinse</li>
+            <li>Topside &amp; deck wash-down</li>
+            <li>Windows &amp; windshield clean + dry</li>
+            <li>Interior surface wipe-down</li>
+            <li>Dash, console &amp; cupholders</li>
+          </ul>
+        </div>
+        <div class="card-cta">
+          <a href="#booking" class="btn-card btn-card-ghost">Book The Essential Wash</a>
+        </div>
+      </div>
+
+      <!-- Package 2 — FEATURED -->
+      <div class="pricing-card featured reveal reveal-d2">
+        <div class="featured-badge">Most Popular</div>
+        <div class="card-header">
+          <div class="card-tier">Package 02</div>
+          <div class="card-name">The Full Detail</div>
+          <div class="card-desc">Full exterior wash plus a complete interior detail. The refresh your boat has been waiting for.</div>
+        </div>
+        <div class="card-prices">
+          <div class="price-note">Starting from</div>
+          <div class="price-row">
+            <span class="price-size">Under 25 ft</span>
+            <span class="price-amount">$280</span>
+          </div>
+          <div class="price-row">
+            <span class="price-size">25 – 35 ft</span>
+            <span class="price-amount">$360</span>
+          </div>
+          <div class="price-row">
+            <span class="price-size">35 ft +</span>
+            <span class="price-amount">$460+</span>
+          </div>
+        </div>
+        <div class="card-features">
+          <ul>
+            <li>Everything in The Essential Wash</li>
+            <li>Upholstery &amp; vinyl clean + condition</li>
+            <li>UV &amp; mold-resistant vinyl protection</li>
+            <li>Floor &amp; carpet vacuum and scrub</li>
+            <li>Compartments &amp; hatches cleaned out</li>
+            <li>Mildew treatment on seats &amp; cushions</li>
+          </ul>
+        </div>
+        <div class="card-cta">
+          <a href="#booking" class="btn-card btn-card-aqua">Book The Full Detail</a>
+        </div>
+      </div>
+
+      <!-- Package 3 -->
+      <div class="pricing-card reveal reveal-d3">
+        <div class="card-header">
+          <div class="card-tier">Package 03</div>
+          <div class="card-name">The Restoration Detail</div>
+          <div class="card-desc">Full detail plus oxidation removal and ceramic protection. Walk away with a boat that turns heads.</div>
+        </div>
+        <div class="card-prices">
+          <div class="price-note">Starting from</div>
+          <div class="price-row">
+            <span class="price-size">Under 25 ft</span>
+            <span class="price-amount">$500</span>
+          </div>
+          <div class="price-row">
+            <span class="price-size">25 – 35 ft</span>
+            <span class="price-amount">$660</span>
+          </div>
+          <div class="price-row">
+            <span class="price-size">35 ft +</span>
+            <span class="price-amount">Quote</span>
+          </div>
+        </div>
+        <div class="card-features">
+          <ul>
+            <li>Everything in The Full Detail</li>
+            <li>Oxidation removal (light–average)</li>
+            <li>High-gloss gelcoat restoration</li>
+            <li>Ceramic sealant protection (6–8 months)</li>
+            <li>Isinglass &amp; clear vinyl care</li>
+            <li>Heavy oxidation: quoted separately</li>
+          </ul>
+        </div>
+        <div class="card-cta">
+          <a href="#booking" class="btn-card btn-card-ghost">Book The Restoration Detail</a>
+        </div>
+      </div>
+
+    </div>
+
+    <p class="pricing-note reveal">
+      <strong>Not sure which to pick?</strong> Text or call and we'll recommend the right package for your boat's needs.
+      <br>Heavy oxidation quoted case by case after inspection.
+    </p>
+  </div>
+</section>
 
 <!-- ─── HOW IT WORKS ─── -->
 <section id="how-it-works">
@@ -1314,137 +1445,6 @@
   </div>
 </section>
 
-<!-- ─── PRICING ─── -->
-<section id="pricing">
-  <div class="section-inner">
-    <div class="pricing-header reveal">
-      <div class="section-eyebrow">Transparent Pricing</div>
-      <h2 class="section-title">Clean boat. Clear price.<br>No surprises.</h2>
-      <p>All packages include travel to your location. Pricing is based on boat length. What you see is what you pay.</p>
-    </div>
-
-    <div class="pricing-grid">
-
-      <!-- Package 1 -->
-      <div class="pricing-card reveal reveal-d1">
-        <div class="card-header">
-          <div class="card-tier">Package 01</div>
-          <div class="card-name">The Essential Wash</div>
-          <div class="card-desc">A thorough exterior wash that leaves your hull gleaming and your topside spotless. Done right, every time.</div>
-        </div>
-        <div class="card-prices">
-          <div class="price-note">Starting from</div>
-          <div class="price-row">
-            <span class="price-size">Under 25 ft</span>
-            <span class="price-amount">$100</span>
-          </div>
-          <div class="price-row">
-            <span class="price-size">25 – 35 ft</span>
-            <span class="price-amount">$120</span>
-          </div>
-          <div class="price-row">
-            <span class="price-size">35 ft +</span>
-            <span class="price-amount">$150+</span>
-          </div>
-        </div>
-        <div class="card-features">
-          <ul>
-            <li>Exterior hull wash &amp; rinse</li>
-            <li>Topside &amp; deck wash-down</li>
-            <li>Windows &amp; windshield clean + dry</li>
-            <li>Interior surface wipe-down</li>
-            <li>Dash, console &amp; cupholders</li>
-          </ul>
-        </div>
-        <div class="card-cta">
-          <a href="#booking" class="btn-card btn-card-ghost">Book The Essential Wash</a>
-        </div>
-      </div>
-
-      <!-- Package 2 — FEATURED -->
-      <div class="pricing-card featured reveal reveal-d2">
-        <div class="featured-badge">Most Popular</div>
-        <div class="card-header">
-          <div class="card-tier">Package 02</div>
-          <div class="card-name">The Full Detail</div>
-          <div class="card-desc">Full exterior wash plus a complete interior detail. The refresh your boat has been waiting for.</div>
-        </div>
-        <div class="card-prices">
-          <div class="price-note">Starting from</div>
-          <div class="price-row">
-            <span class="price-size">Under 25 ft</span>
-            <span class="price-amount">$280</span>
-          </div>
-          <div class="price-row">
-            <span class="price-size">25 – 35 ft</span>
-            <span class="price-amount">$360</span>
-          </div>
-          <div class="price-row">
-            <span class="price-size">35 ft +</span>
-            <span class="price-amount">$460+</span>
-          </div>
-        </div>
-        <div class="card-features">
-          <ul>
-            <li>Everything in The Essential Wash</li>
-            <li>Upholstery &amp; vinyl clean + condition</li>
-            <li>UV &amp; mold-resistant vinyl protection</li>
-            <li>Floor &amp; carpet vacuum and scrub</li>
-            <li>Compartments &amp; hatches cleaned out</li>
-            <li>Mildew treatment on seats &amp; cushions</li>
-          </ul>
-        </div>
-        <div class="card-cta">
-          <a href="#booking" class="btn-card btn-card-aqua">Book The Full Detail</a>
-        </div>
-      </div>
-
-      <!-- Package 3 -->
-      <div class="pricing-card reveal reveal-d3">
-        <div class="card-header">
-          <div class="card-tier">Package 03</div>
-          <div class="card-name">The Restoration Detail</div>
-          <div class="card-desc">Full detail plus oxidation removal and ceramic protection. Walk away with a boat that turns heads.</div>
-        </div>
-        <div class="card-prices">
-          <div class="price-note">Starting from</div>
-          <div class="price-row">
-            <span class="price-size">Under 25 ft</span>
-            <span class="price-amount">$500</span>
-          </div>
-          <div class="price-row">
-            <span class="price-size">25 – 35 ft</span>
-            <span class="price-amount">$660</span>
-          </div>
-          <div class="price-row">
-            <span class="price-size">35 ft +</span>
-            <span class="price-amount">Quote</span>
-          </div>
-        </div>
-        <div class="card-features">
-          <ul>
-            <li>Everything in The Full Detail</li>
-            <li>Oxidation removal (light–average)</li>
-            <li>High-gloss gelcoat restoration</li>
-            <li>Ceramic sealant protection (6–8 months)</li>
-            <li>Isinglass &amp; clear vinyl care</li>
-            <li>Heavy oxidation: quoted separately</li>
-          </ul>
-        </div>
-        <div class="card-cta">
-          <a href="#booking" class="btn-card btn-card-ghost">Book The Restoration Detail</a>
-        </div>
-      </div>
-
-    </div>
-
-    <p class="pricing-note reveal">
-      <strong>Not sure which to pick?</strong> Text or call and we'll recommend the right package for your boat's needs.
-      <br>Heavy oxidation quoted case by case after inspection.
-    </p>
-  </div>
-</section>
-
 <!-- ─── TESTIMONIALS ─── -->
 <section id="testimonials">
   <div class="section-inner">
@@ -1641,7 +1641,7 @@
       const target = document.querySelector(link.getAttribute('href'));
       if (target) {
         e.preventDefault();
-        const top = target.getBoundingClientRect().top + window.scrollY - 76;
+        const top = target.getBoundingClientRect().top + window.scrollY - 84;
         window.scrollTo({ top, behavior: 'smooth' });
       }
     });
