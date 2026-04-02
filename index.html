@@ -1,0 +1,1596 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Marine Craft Cleaners: Treasure Coast Boat Detailing</title>
+  <meta name="description" content="Mobile boat detailing on the Treasure Coast. We come to your slip, dock, or storage. Online booking, instant confirmation. Serving Wabasso, Sebastian, Vero Beach, Fort Pierce, Port St. Lucie, and Stuart, FL.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ─── DESIGN TOKENS ─── */
+    :root {
+      --navy:        #162852;
+      --navy-mid:    #1E3668;
+      --navy-light:  #2A4A80;
+      --navy-faint:  #0F1F40;
+      --aqua:        #5BB8CC;
+      --aqua-light:  #7DCDD9;
+      --aqua-dark:   #3A9AB0;
+      --aqua-faint:  rgba(91,184,204,0.12);
+      --white:       #FFFFFF;
+      --cream:       #F4F0E6;
+      --cream-dark:  #EAE4D6;
+      --brass:       #C8892A;
+      --brass-light: #DDA93E;
+      --text:        #0E1D36;
+      --text-mid:    #4A6678;
+      --text-light:  #8AAABB;
+
+      --font-display: 'Cormorant Garamond', Georgia, serif;
+      --font-body:    'DM Sans', system-ui, sans-serif;
+
+      --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+      --ease-out:    cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    /* ─── RESET ─── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 17px; }
+    body {
+      font-family: var(--font-body);
+      color: var(--text);
+      background: var(--cream);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Grain overlay */
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 9999;
+      opacity: 0.028;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-repeat: repeat;
+      background-size: 300px 300px;
+    }
+
+    /* ─── SCROLLBAR ─── */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--navy-faint); }
+    ::-webkit-scrollbar-thumb { background: var(--aqua-dark); border-radius: 3px; }
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 800;
+      height: 68px;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 3rem;
+      transition: background 0.35s var(--ease-out), border-color 0.35s ease, backdrop-filter 0.35s ease;
+      border-bottom: 1px solid transparent;
+    }
+    nav.scrolled {
+      background: rgba(14, 29, 54, 0.92);
+      backdrop-filter: blur(14px) saturate(1.3);
+      border-color: rgba(91, 184, 204, 0.12);
+    }
+    .nav-logo { display: flex; align-items: center; gap: 0.875rem; text-decoration: none; }
+    .nav-logo img { height: 42px; width: auto; border-radius: 6px; }
+    .nav-logo-name {
+      font-family: var(--font-display);
+      font-weight: 700; font-size: 1.2rem;
+      color: var(--white); line-height: 1.1; letter-spacing: 0.01em;
+    }
+    .nav-logo-sub {
+      font-size: 0.6rem; font-weight: 600;
+      letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--aqua); margin-top: 1px;
+    }
+    .nav-links {
+      display: flex; align-items: center; gap: 2.25rem; list-style: none;
+    }
+    .nav-links a {
+      color: rgba(255,255,255,0.7); text-decoration: none;
+      font-size: 0.84rem; font-weight: 500; letter-spacing: 0.03em;
+      transition: color 0.2s ease;
+    }
+    .nav-links a:hover { color: var(--aqua-light); }
+    .btn-nav-book {
+      background: var(--aqua); color: var(--navy-faint) !important;
+      padding: 0.5rem 1.35rem; border-radius: 4px;
+      font-weight: 700 !important; font-size: 0.84rem !important;
+      letter-spacing: 0.04em !important;
+      box-shadow: 0 2px 12px rgba(91,184,204,0.35);
+      transition: background 0.2s ease, transform 0.15s var(--ease-spring), box-shadow 0.2s ease !important;
+    }
+    .btn-nav-book:hover {
+      background: var(--aqua-light) !important; color: var(--navy-faint) !important;
+      transform: translateY(-1px);
+      box-shadow: 0 6px 20px rgba(91,184,204,0.45) !important;
+    }
+    .btn-nav-book:active { transform: translateY(0) !important; }
+
+    /* Mobile hamburger */
+    .nav-hamburger {
+      display: none; flex-direction: column; gap: 5px; cursor: pointer;
+      padding: 4px; background: none; border: none;
+    }
+    .nav-hamburger span {
+      display: block; width: 22px; height: 2px;
+      background: rgba(255,255,255,0.8); border-radius: 2px;
+      transition: transform 0.25s ease, opacity 0.2s ease;
+    }
+    .nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav-hamburger.open span:nth-child(2) { opacity: 0; }
+    .nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    /* Mobile nav drawer */
+    .nav-mobile {
+      position: fixed; top: 68px; left: 0; right: 0;
+      background: rgba(14, 29, 54, 0.97);
+      backdrop-filter: blur(12px);
+      padding: 1.5rem 2rem 2rem;
+      transform: translateY(-110%);
+      transition: transform 0.3s var(--ease-out);
+      z-index: 799;
+      border-bottom: 1px solid rgba(91,184,204,0.15);
+    }
+    .nav-mobile.open { transform: translateY(0); }
+    .nav-mobile ul { list-style: none; display: flex; flex-direction: column; gap: 1.25rem; margin-bottom: 1.5rem; }
+    .nav-mobile ul a { color: rgba(255,255,255,0.8); text-decoration: none; font-size: 1rem; font-weight: 500; }
+    .nav-mobile .btn-nav-book { display: inline-block; text-decoration: none; }
+
+    /* ─── HERO ─── */
+    .hero {
+      position: relative; height: 100vh; min-height: 700px;
+      display: flex; align-items: center;
+      background: var(--navy-faint); overflow: hidden;
+    }
+
+    /* Animated gradient atmosphere */
+    .hero-atmosphere {
+      position: absolute; inset: 0; z-index: 1;
+      background:
+        radial-gradient(ellipse 50% 70% at 80% 50%, rgba(91,184,204,0.14) 0%, transparent 60%),
+        radial-gradient(ellipse 35% 55% at 68% 30%, rgba(58, 100, 175, 0.30) 0%, transparent 65%),
+        radial-gradient(ellipse 40% 40% at 15% 65%, rgba(42,74,128,0.45) 0%, transparent 60%),
+        radial-gradient(ellipse 70% 40% at 50% 0%, rgba(14,31,64,0.7) 0%, transparent 75%),
+        linear-gradient(160deg, #0C1A32 0%, #162852 50%, #1A3060 100%);
+    }
+
+    /* Shimmer scan line */
+    .hero-shimmer {
+      position: absolute; inset: 0; z-index: 2; pointer-events: none;
+      background: linear-gradient(180deg, transparent 0%, rgba(91,184,204,0.02) 50%, transparent 100%);
+      background-size: 100% 4px;
+      animation: shimmerScan 12s linear infinite;
+      opacity: 0.6;
+    }
+    @keyframes shimmerScan {
+      0%   { background-position: 0 -100vh; }
+      100% { background-position: 0 200vh; }
+    }
+
+    /* Animated bokeh particles */
+    .hero-particles { position: absolute; inset: 0; z-index: 3; overflow: hidden; }
+    .particle {
+      position: absolute; border-radius: 50%;
+      background: var(--aqua); opacity: 0;
+      animation: particleFloat var(--dur) ease-in-out var(--delay) infinite;
+    }
+    @keyframes particleFloat {
+      0%   { transform: translateY(0) translateX(0); opacity: 0; }
+      20%  { opacity: var(--opacity); }
+      80%  { opacity: var(--opacity); }
+      100% { transform: translateY(calc(var(--rise) * -1)) translateX(var(--drift)); opacity: 0; }
+    }
+
+    /* Wave layers at hero bottom */
+    .hero-waves {
+      position: absolute; bottom: -2px; left: 0; right: 0; z-index: 5;
+      height: 130px; overflow: hidden;
+    }
+    .wave-svg {
+      position: absolute; bottom: 0; left: 0;
+      width: 200%; height: 100%;
+      animation: waveDrift var(--wave-speed) linear infinite;
+    }
+    .wave-svg.reverse { animation-direction: reverse; }
+    @keyframes waveDrift {
+      0%   { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    /* Hero layout: two columns */
+    .hero-content {
+      position: relative; z-index: 10;
+      max-width: 1240px; margin: 0 auto;
+      padding: 0 3rem; padding-top: 68px;
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: center;
+    }
+
+    /* ── Left column ── */
+    .hero-left {}
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 0.6rem;
+      font-size: 0.72rem; font-weight: 600;
+      letter-spacing: 0.22em; text-transform: uppercase;
+      color: var(--aqua); margin-bottom: 1.5rem;
+      opacity: 0; transform: translateY(18px);
+      animation: revealUp 0.8s var(--ease-out) 0.25s forwards;
+    }
+    .hero-eyebrow::before {
+      content: ''; display: block;
+      width: 28px; height: 1px; background: var(--aqua);
+    }
+    .hero-headline {
+      font-family: var(--font-display);
+      font-size: clamp(3rem, 5.5vw, 6rem);
+      font-weight: 700; font-style: italic;
+      color: var(--white); line-height: 1.0;
+      letter-spacing: -0.025em;
+      margin-bottom: 1.5rem;
+      opacity: 0; transform: translateY(28px);
+      animation: revealUp 0.9s var(--ease-out) 0.45s forwards;
+    }
+    .hero-headline .aqua { color: var(--aqua); }
+    .hero-sub {
+      font-size: 1rem; color: rgba(255,255,255,0.6);
+      max-width: 420px; line-height: 1.7; font-weight: 300;
+      margin-bottom: 2.25rem;
+      opacity: 0; transform: translateY(18px);
+      animation: revealUp 0.9s var(--ease-out) 0.65s forwards;
+    }
+    .hero-ctas {
+      display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 2.25rem;
+      opacity: 0; transform: translateY(18px);
+      animation: revealUp 0.9s var(--ease-out) 0.85s forwards;
+    }
+    .hero-pills-row {
+      display: flex; flex-wrap: wrap; gap: 0.4rem;
+      opacity: 0; animation: revealUp 0.9s var(--ease-out) 1.05s forwards;
+    }
+    .pill {
+      padding: 0.28rem 0.7rem; border-radius: 100px;
+      background: rgba(91,184,204,0.1);
+      border: 1px solid rgba(91,184,204,0.2);
+      font-size: 0.71rem; color: rgba(255,255,255,0.6);
+      letter-spacing: 0.04em;
+    }
+
+    /* ── Right column: logo card + stat grid ── */
+    .hero-right {
+      position: relative;
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; transform: translateY(24px);
+      animation: revealUp 1s var(--ease-out) 0.7s forwards;
+    }
+    .hero-vis {
+      display: flex; flex-direction: column; gap: 1rem; width: 100%; max-width: 440px;
+    }
+
+    /* Logo card — semi-transparent panel with strong visible border */
+    .hero-logo-card {
+      background: linear-gradient(135deg, rgba(42, 80, 145, 0.88) 0%, rgba(28, 55, 108, 0.82) 100%);
+      border: 1.5px solid rgba(91,184,204,0.6);
+      border-radius: 18px; padding: 1.75rem 2rem;
+      display: flex; align-items: center; gap: 1.25rem;
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      box-shadow:
+        0 0 0 1px rgba(91,184,204,0.18),
+        0 20px 60px rgba(0,0,0,0.55),
+        inset 0 1px 0 rgba(255,255,255,0.08);
+      animation: cardFloat 7s ease-in-out infinite;
+    }
+    @keyframes cardFloat {
+      0%, 100% { transform: translateY(0px); }
+      50%       { transform: translateY(-7px); }
+    }
+    .hero-logo-card img {
+      width: 96px; height: auto; border-radius: 8px; flex-shrink: 0;
+      filter: brightness(1.15) saturate(1.1);
+    }
+    .hero-logo-card-text {}
+    .hero-logo-card-name {
+      font-family: var(--font-display);
+      font-size: 1.4rem; font-weight: 700; font-style: italic;
+      color: var(--white); line-height: 1.1; margin-bottom: 0.2rem;
+    }
+    .hero-logo-card-sub {
+      font-size: 0.68rem; font-weight: 600; letter-spacing: 0.16em;
+      text-transform: uppercase; color: var(--aqua);
+    }
+    .hero-logo-card-desc {
+      font-size: 0.82rem; color: rgba(255,255,255,0.5);
+      line-height: 1.5; margin-top: 0.4rem; font-weight: 300;
+    }
+
+    /* Three stat cards */
+    .hero-stats-row {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.75rem;
+    }
+    .hero-stat-card {
+      background: linear-gradient(160deg, rgba(38, 72, 132, 0.80) 0%, rgba(22, 48, 95, 0.75) 100%);
+      border: 1px solid rgba(91,184,204,0.38);
+      border-radius: 12px; padding: 1rem 0.75rem; text-align: center;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.06);
+      transition: border-color 0.25s ease, background 0.25s ease, transform 0.25s var(--ease-out);
+      animation: cardFloat var(--cf-dur) ease-in-out var(--cf-delay) infinite;
+    }
+    .hero-stat-card:nth-child(1) { --cf-dur: 6s; --cf-delay: 0s; }
+    .hero-stat-card:nth-child(2) { --cf-dur: 7s; --cf-delay: 0.8s; }
+    .hero-stat-card:nth-child(3) { --cf-dur: 5.5s; --cf-delay: 1.6s; }
+    .hero-stat-card:hover {
+      border-color: rgba(91,184,204,0.45);
+      background: rgba(91,184,204,0.08);
+      transform: translateY(-4px) !important;
+    }
+    .hero-stat-num {
+      font-family: var(--font-display);
+      font-size: 1.6rem; font-weight: 700; font-style: italic;
+      color: var(--white); line-height: 1; margin-bottom: 0.2rem;
+    }
+    .hero-stat-stars { color: var(--aqua); font-size: 0.7rem; margin-bottom: 0.15rem; }
+    .hero-stat-label {
+      font-size: 0.62rem; font-weight: 600;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: rgba(255,255,255,0.40);
+    }
+
+    @keyframes revealUp {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ─── BUTTONS ─── */
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: var(--aqua); color: var(--navy-faint);
+      padding: 0.9rem 2rem; border-radius: 4px;
+      font-weight: 700; font-size: 0.875rem; letter-spacing: 0.05em;
+      text-decoration: none;
+      box-shadow: 0 4px 20px rgba(91,184,204,0.4), 0 1px 4px rgba(0,0,0,0.2);
+      transition: background 0.2s ease, transform 0.15s var(--ease-spring), box-shadow 0.2s ease;
+    }
+    .btn-primary:hover {
+      background: var(--aqua-light); transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(91,184,204,0.55), 0 2px 8px rgba(0,0,0,0.2);
+    }
+    .btn-primary:active { transform: translateY(0); }
+
+    .btn-outline {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: transparent; color: rgba(255,255,255,0.85);
+      padding: 0.9rem 2rem; border-radius: 4px;
+      font-weight: 500; font-size: 0.875rem; letter-spacing: 0.04em;
+      text-decoration: none;
+      border: 1.5px solid rgba(255,255,255,0.3);
+      transition: border-color 0.2s ease, color 0.2s ease, transform 0.15s var(--ease-spring);
+    }
+    .btn-outline:hover {
+      border-color: var(--aqua); color: var(--aqua); transform: translateY(-2px);
+    }
+    .btn-outline:active { transform: translateY(0); }
+
+    /* ─── TRUST STRIP ─── */
+    .trust-strip {
+      background: var(--navy-mid);
+      border-top: 1px solid rgba(91,184,204,0.12);
+      border-bottom: 1px solid rgba(91,184,204,0.12);
+    }
+    .trust-strip-inner {
+      max-width: 1200px; margin: 0 auto;
+      padding: 1.4rem 3rem;
+      display: flex; justify-content: center;
+      gap: 2.5rem; flex-wrap: wrap; align-items: center;
+    }
+    .trust-item {
+      display: flex; align-items: center; gap: 0.7rem;
+      color: rgba(255,255,255,0.75); font-size: 0.84rem; font-weight: 500;
+      white-space: nowrap;
+    }
+    .trust-dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--aqua); flex-shrink: 0;
+    }
+
+    /* ─── SECTION COMMON ─── */
+    .section-inner {
+      max-width: 1200px; margin: 0 auto;
+      padding: 6rem 3rem;
+    }
+    .section-eyebrow {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      font-size: 0.69rem; font-weight: 600;
+      letter-spacing: 0.22em; text-transform: uppercase;
+      color: var(--aqua); margin-bottom: 1rem;
+    }
+    .section-eyebrow::before {
+      content: ''; display: block;
+      width: 20px; height: 1px; background: var(--aqua);
+    }
+    .section-title {
+      font-family: var(--font-display);
+      font-size: clamp(2.2rem, 3.5vw, 3.2rem);
+      font-weight: 700; font-style: italic;
+      line-height: 1.08; letter-spacing: -0.02em;
+    }
+
+    /* ─── SCROLL REVEAL ─── */
+    .reveal {
+      opacity: 0; transform: translateY(28px);
+      transition: opacity 0.7s var(--ease-out), transform 0.7s var(--ease-out);
+    }
+    .reveal.in { opacity: 1; transform: translateY(0); }
+    .reveal-d1 { transition-delay: 0.08s; }
+    .reveal-d2 { transition-delay: 0.18s; }
+    .reveal-d3 { transition-delay: 0.28s; }
+    .reveal-d4 { transition-delay: 0.38s; }
+
+    /* ─── ABOUT ─── */
+    #about { background: var(--navy); color: var(--white); }
+    #about .section-eyebrow { color: var(--aqua); }
+    #about .section-eyebrow::after { background: var(--aqua); }
+    .about-inner {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 5rem; align-items: center;
+    }
+    .about-title {
+      font-family: var(--font-display);
+      font-size: clamp(2.2rem, 3.5vw, 3.2rem);
+      font-weight: 700; font-style: italic;
+      line-height: 1.08; letter-spacing: -0.02em;
+      color: var(--white); margin-bottom: 1.5rem;
+    }
+    .about-body { font-size: 1.05rem; line-height: 1.75; color: rgba(255,255,255,0.75); }
+    .about-body p + p { margin-top: 1.1rem; }
+    .about-body strong { color: var(--white); font-weight: 600; }
+    .about-right { display: flex; flex-direction: column; gap: 1.25rem; }
+    .about-philosophy {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(91,184,204,0.2);
+      border-left: 3px solid var(--aqua);
+      border-radius: 8px; padding: 1.75rem;
+    }
+    .about-philosophy-quote {
+      font-family: var(--font-display);
+      font-size: 1.35rem; font-style: italic; font-weight: 600;
+      color: var(--white); line-height: 1.45; margin-bottom: 0.75rem;
+    }
+    .about-philosophy-attr {
+      font-size: 0.72rem; font-weight: 700; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--aqua);
+    }
+    .about-credentials { display: flex; flex-direction: column; gap: 0.75rem; }
+    .about-cred-item {
+      display: flex; align-items: flex-start; gap: 1rem;
+      padding: 1rem 1.25rem;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08); border-radius: 8px;
+      transition: background 0.2s ease, border-color 0.2s ease;
+    }
+    .about-cred-item:hover {
+      background: rgba(255,255,255,0.07);
+      border-color: rgba(91,184,204,0.2);
+    }
+    .about-cred-icon {
+      width: 28px; height: 28px; flex-shrink: 0;
+      color: var(--aqua); margin-top: 2px;
+    }
+    .about-cred-icon svg {
+      width: 100%; height: 100%; stroke: currentColor;
+      fill: none; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round;
+    }
+    .about-cred-label {
+      font-size: 0.67rem; font-weight: 700; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--aqua); margin-bottom: 0.2rem;
+    }
+    .about-cred-text { font-size: 0.93rem; color: rgba(255,255,255,0.68); line-height: 1.45; }
+
+    /* ─── PRICING ─── */
+    #pricing { background: var(--cream); }
+    .pricing-header { max-width: 580px; margin-bottom: 3.5rem; }
+    .pricing-header .section-title { color: var(--navy); }
+    .pricing-header p { color: var(--text-mid); margin-top: 0.9rem; line-height: 1.7; font-size: 1rem; }
+
+    .pricing-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem; align-items: start;
+    }
+    .pricing-card {
+      background: var(--white); border-radius: 10px;
+      border: 1.5px solid rgba(0,0,0,0.07);
+      overflow: hidden; position: relative;
+      transition: transform 0.3s var(--ease-out), box-shadow 0.3s ease;
+    }
+    .pricing-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 16px 48px rgba(14,29,54,0.11), 0 2px 8px rgba(14,29,54,0.06);
+    }
+    .pricing-card.featured {
+      border-color: var(--aqua); transform: translateY(-10px);
+      box-shadow: 0 20px 56px rgba(91,184,204,0.18), 0 4px 16px rgba(14,29,54,0.1);
+    }
+    .pricing-card.featured:hover { transform: translateY(-15px); }
+    .featured-badge {
+      position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+      background: var(--aqua); color: var(--navy-faint);
+      font-size: 0.62rem; font-weight: 700; letter-spacing: 0.14em;
+      text-transform: uppercase; padding: 0.3rem 1.1rem;
+      border-radius: 0 0 6px 6px;
+    }
+    .card-header {
+      padding: 1.75rem 1.75rem 1.25rem;
+      border-bottom: 1px solid rgba(0,0,0,0.06);
+    }
+    .featured .card-header { padding-top: 2.5rem; }
+    .card-tier {
+      font-size: 0.65rem; font-weight: 700; letter-spacing: 0.2em;
+      text-transform: uppercase; color: var(--text-light); margin-bottom: 0.4rem;
+    }
+    .card-name {
+      font-family: var(--font-display);
+      font-size: 1.85rem; font-weight: 700; font-style: italic;
+      color: var(--navy); line-height: 1.05; margin-bottom: 0.5rem;
+    }
+    .card-desc { font-size: 0.92rem; color: var(--text-mid); line-height: 1.55; }
+
+    .card-prices {
+      padding: 1.2rem 1.75rem;
+      background: var(--cream);
+      border-bottom: 1px solid rgba(0,0,0,0.06);
+    }
+    .featured .card-prices { background: rgba(91,184,204,0.06); }
+    .price-note {
+      font-size: 0.65rem; font-weight: 700; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--text-light); margin-bottom: 0.65rem;
+    }
+    .price-row {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 0.38rem 0; font-size: 0.95rem;
+    }
+    .price-row + .price-row { border-top: 1px solid rgba(0,0,0,0.05); }
+    .price-size { color: var(--text-mid); }
+    .price-amount {
+      font-family: var(--font-display);
+      font-size: 1.1rem; font-weight: 700; color: var(--navy);
+    }
+    .featured .price-amount { color: var(--aqua-dark); }
+
+    .card-features {
+      padding: 1.25rem 1.75rem 1.5rem;
+    }
+    .card-features ul { list-style: none; display: flex; flex-direction: column; gap: 0.55rem; }
+    .card-features li {
+      display: flex; align-items: flex-start; gap: 0.55rem;
+      font-size: 0.92rem; color: var(--text-mid); line-height: 1.4;
+    }
+    .card-features li::before {
+      content: '✓'; color: var(--aqua); font-weight: 700; flex-shrink: 0; margin-top: 0.05rem;
+    }
+    .card-cta { padding: 0 1.75rem 1.75rem; }
+    .btn-card {
+      display: block; text-align: center; text-decoration: none;
+      padding: 0.8rem; border-radius: 5px;
+      font-weight: 600; font-size: 0.92rem; letter-spacing: 0.04em;
+      transition: background 0.2s ease, transform 0.15s var(--ease-spring), box-shadow 0.2s ease;
+      border: none; cursor: pointer; width: 100%;
+    }
+    .btn-card-ghost {
+      background: transparent; color: var(--navy);
+      border: 1.5px solid rgba(0,0,0,0.14);
+    }
+    .btn-card-ghost:hover { background: var(--cream); border-color: var(--navy); transform: translateY(-1px); }
+    .btn-card-aqua {
+      background: var(--aqua); color: var(--navy-faint);
+      box-shadow: 0 4px 16px rgba(91,184,204,0.35);
+    }
+    .btn-card-aqua:hover {
+      background: var(--aqua-light); transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(91,184,204,0.45);
+    }
+
+    .pricing-note {
+      margin-top: 2rem; text-align: center;
+      font-size: 0.92rem; color: var(--text-mid);
+    }
+    .pricing-note strong { color: var(--text); }
+
+    /* ─── HOW IT WORKS ─── */
+    #how-it-works { background: var(--navy); }
+    .how-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 4rem; gap: 2rem; flex-wrap: wrap; }
+    .how-header .section-title { color: var(--white); }
+    .how-header p { font-size: 1rem; color: rgba(255,255,255,0.5); line-height: 1.65; max-width: 320px; }
+
+    .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2.5rem; }
+    .step { position: relative; }
+    .step-connector {
+      position: absolute; top: 26px; left: calc(100% + 0.5rem);
+      width: calc(2.5rem - 1rem);
+      height: 1px; background: rgba(91,184,204,0.2);
+      pointer-events: none;
+    }
+    .step:last-child .step-connector { display: none; }
+    .step-num {
+      font-family: var(--font-display);
+      font-size: 0.7rem; font-weight: 600; letter-spacing: 0.14em;
+      color: var(--aqua); margin-bottom: 1.1rem;
+    }
+    .step-icon-wrap {
+      width: 50px; height: 50px;
+      background: rgba(91,184,204,0.1);
+      border: 1.5px solid rgba(91,184,204,0.22);
+      border-radius: 10px; display: flex; align-items: center; justify-content: center;
+      margin-bottom: 1.25rem;
+      transition: background 0.25s ease, border-color 0.25s ease;
+    }
+    .step:hover .step-icon-wrap {
+      background: rgba(91,184,204,0.18); border-color: rgba(91,184,204,0.4);
+    }
+    .step-icon-wrap svg { width: 22px; height: 22px; stroke: var(--aqua); fill: none; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+    .step h3 {
+      font-family: var(--font-display);
+      font-size: 1.5rem; font-weight: 700; font-style: italic;
+      color: var(--white); margin-bottom: 0.5rem; line-height: 1.1;
+    }
+    .step p { font-size: 0.95rem; color: rgba(255,255,255,0.5); line-height: 1.65; }
+
+    /* ─── WHY US ─── */
+    #why-us { background: var(--cream-dark); }
+    .why-header { max-width: 520px; margin-bottom: 3.5rem; }
+    .why-header .section-title { color: var(--navy); }
+    .why-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
+    .why-card {
+      background: var(--white); border-radius: 8px; padding: 1.75rem;
+      border: 1px solid rgba(0,0,0,0.06);
+      transition: transform 0.25s var(--ease-out), box-shadow 0.25s ease;
+    }
+    .why-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 36px rgba(14,29,54,0.09);
+    }
+    .why-icon {
+      width: 42px; height: 42px; border-radius: 8px;
+      background: var(--aqua-faint); display: flex; align-items: center; justify-content: center;
+      margin-bottom: 1rem;
+    }
+    .why-icon svg { width: 20px; height: 20px; stroke: var(--aqua); fill: none; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+    .why-card h3 {
+      font-family: var(--font-display);
+      font-size: 1.2rem; font-weight: 700; font-style: italic;
+      color: var(--navy); margin-bottom: 0.35rem; line-height: 1.1;
+    }
+    .why-card p { font-size: 0.92rem; color: var(--text-mid); line-height: 1.6; }
+
+    /* ─── TESTIMONIALS ─── */
+    #testimonials { background: var(--white); }
+    .testimonials-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 3.5rem; gap: 2rem; flex-wrap: wrap; }
+    .testimonials-header .section-title { color: var(--navy); }
+    .rating-summary {
+      text-align: right;
+    }
+    .rating-big {
+      font-family: var(--font-display);
+      font-size: 3.5rem; font-weight: 700; font-style: italic;
+      color: var(--navy); line-height: 1;
+    }
+    .rating-stars { color: var(--brass); font-size: 1rem; margin: 0.2rem 0; letter-spacing: 0.1em; }
+    .rating-label { font-size: 0.76rem; color: var(--text-light); letter-spacing: 0.06em; }
+
+    .testimonials-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
+    .testimonial-card {
+      background: var(--cream); border-radius: 8px; padding: 1.75rem;
+      border: 1px solid var(--cream-dark);
+      display: flex; flex-direction: column; gap: 0.9rem;
+      transition: box-shadow 0.25s ease;
+    }
+    .testimonial-card:hover { box-shadow: 0 8px 28px rgba(14,29,54,0.07); }
+    .t-stars { display: flex; gap: 0.2rem; }
+    .t-stars span { color: var(--brass); font-size: 0.875rem; }
+    .t-quote {
+      font-size: 1rem; color: var(--text); line-height: 1.7; flex: 1;
+      font-style: italic; position: relative;
+    }
+    .t-quote::before {
+      content: '\201C';
+      font-family: var(--font-display);
+      font-size: 3rem; color: var(--aqua); line-height: 0;
+      vertical-align: -0.6rem; margin-right: 0.05rem;
+    }
+    .t-author {
+      display: flex; align-items: center; gap: 0.75rem;
+      padding-top: 0.9rem; border-top: 1px solid var(--cream-dark);
+    }
+    .t-avatar {
+      width: 36px; height: 36px; border-radius: 50%;
+      background: var(--navy-mid); display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-display); font-size: 1rem; font-weight: 700; color: var(--aqua);
+      flex-shrink: 0;
+    }
+    .t-name { font-size: 0.92rem; font-weight: 600; color: var(--navy); }
+    .t-detail { font-size: 0.75rem; color: var(--text-light); }
+
+    /* ─── BOOKING ─── */
+    #booking { background: var(--navy-faint); }
+    .booking-grid {
+      display: grid; grid-template-columns: 1fr 1.45fr; gap: 6rem; align-items: start;
+    }
+    .booking-left .section-eyebrow { color: var(--aqua); }
+    .booking-left h2 {
+      font-family: var(--font-display);
+      font-size: clamp(2.2rem, 3.2vw, 3rem);
+      font-weight: 700; font-style: italic;
+      color: var(--white); line-height: 1.08; letter-spacing: -0.02em;
+      margin-bottom: 1rem;
+    }
+    .booking-left > p { font-size: 1rem; color: rgba(255,255,255,0.5); line-height: 1.7; margin-bottom: 2rem; }
+    .booking-contact { display: flex; flex-direction: column; gap: 0.75rem; }
+    .booking-contact a, .booking-contact span {
+      display: flex; align-items: center; gap: 0.7rem;
+      color: rgba(255,255,255,0.65); font-size: 0.95rem; text-decoration: none;
+      transition: color 0.2s ease;
+    }
+    .booking-contact a:hover { color: var(--aqua); }
+    .booking-contact svg { width: 17px; height: 17px; stroke: var(--aqua); fill: none; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0; }
+
+    .booking-form {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 0.9rem;
+    }
+    .form-group { display: flex; flex-direction: column; gap: 0.35rem; }
+    .form-group.wide { grid-column: 1 / -1; }
+    .form-group label {
+      font-size: 0.66rem; font-weight: 600; letter-spacing: 0.12em;
+      text-transform: uppercase; color: rgba(255,255,255,0.4);
+    }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      background: rgba(255,255,255,0.06); border: 1.5px solid rgba(255,255,255,0.1);
+      border-radius: 5px; padding: 0.75rem 0.9rem;
+      font-family: var(--font-body); font-size: 0.95rem; color: var(--white);
+      outline: none; width: 100%;
+      transition: border-color 0.2s ease, background 0.2s ease;
+    }
+    .form-group input::placeholder,
+    .form-group textarea::placeholder { color: rgba(255,255,255,0.22); }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: var(--aqua); background: rgba(91,184,204,0.06);
+    }
+    .form-group select option { background: var(--navy-mid); color: var(--white); }
+    .form-group textarea { min-height: 96px; resize: vertical; }
+
+    .btn-submit {
+      grid-column: 1 / -1; margin-top: 0.4rem;
+      background: var(--aqua); color: var(--navy-faint); border: none;
+      padding: 1rem 2rem; border-radius: 5px;
+      font-family: var(--font-body); font-size: 0.95rem; font-weight: 700;
+      letter-spacing: 0.07em; text-transform: uppercase; cursor: pointer;
+      display: flex; align-items: center; justify-content: center; gap: 0.5rem;
+      box-shadow: 0 4px 20px rgba(91,184,204,0.35);
+      transition: background 0.2s ease, transform 0.15s var(--ease-spring), box-shadow 0.2s ease;
+    }
+    .btn-submit:hover {
+      background: var(--aqua-light); transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(91,184,204,0.5);
+    }
+    .btn-submit:active { transform: translateY(0); }
+    .btn-submit:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+
+    .form-success {
+      grid-column: 1 / -1; display: none;
+      padding: 2rem; text-align: center;
+      background: rgba(91,184,204,0.08);
+      border: 1.5px solid rgba(91,184,204,0.25); border-radius: 8px;
+      animation: revealUp 0.4s var(--ease-out) forwards;
+    }
+    .form-success.show { display: block; }
+    .form-success h3 {
+      font-family: var(--font-display);
+      font-size: 1.6rem; font-style: italic; color: var(--aqua); margin-bottom: 0.4rem;
+    }
+    .form-success p { font-size: 0.95rem; color: rgba(255,255,255,0.55); line-height: 1.6; }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: var(--navy-faint);
+      border-top: 1px solid rgba(255,255,255,0.05);
+    }
+    .footer-grid {
+      max-width: 1200px; margin: 0 auto; padding: 3.5rem 3rem;
+      display: grid; grid-template-columns: 1.6fr 1fr 1fr 1fr; gap: 3rem;
+    }
+    .footer-brand img { height: 36px; width: auto; border-radius: 5px; margin-bottom: 0.85rem; display: block; }
+    .footer-brand p { font-size: 0.88rem; color: rgba(255,255,255,0.38); line-height: 1.65; max-width: 220px; }
+    .footer-col h4 {
+      font-size: 0.66rem; font-weight: 700; letter-spacing: 0.16em;
+      text-transform: uppercase; color: rgba(255,255,255,0.35);
+      margin-bottom: 0.9rem;
+    }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
+    .footer-col ul a, .footer-col ul span {
+      font-size: 0.9rem; color: rgba(255,255,255,0.58); text-decoration: none;
+      transition: color 0.2s ease;
+    }
+    .footer-col ul a:hover { color: var(--aqua); }
+    .footer-area-note { opacity: 0.55; font-size: 0.82em; }
+    .footer-bottom {
+      max-width: 1200px; margin: 0 auto; padding: 1.25rem 3rem;
+      border-top: 1px solid rgba(255,255,255,0.05);
+      display: flex; justify-content: space-between; align-items: center;
+      font-size: 0.78rem; color: rgba(255,255,255,0.28);
+    }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 1100px) {
+      .hero-content { grid-template-columns: 1fr; gap: 2rem; }
+      .hero-right { display: none; }
+      .about-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+      .pricing-grid { grid-template-columns: 1fr; max-width: 420px; }
+      .pricing-card.featured { transform: none; }
+      .pricing-card.featured:hover { transform: translateY(-5px); }
+      .steps { grid-template-columns: 1fr; gap: 2rem; }
+      .step-connector { display: none; }
+      .why-grid { grid-template-columns: repeat(2, 1fr); }
+      .testimonials-grid { grid-template-columns: 1fr; }
+      .booking-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 768px) {
+      nav { padding: 0 1.5rem; }
+      .nav-links { display: none; }
+      .nav-hamburger { display: flex; }
+      .section-inner { padding: 4rem 1.5rem; }
+      .hero-content { padding: 0 1.5rem; padding-top: 68px; }
+      .hero-service-area { display: none; }
+      .trust-strip-inner { padding: 1.25rem 1.5rem; gap: 1.25rem; }
+      .pricing-grid { max-width: 100%; }
+      .why-grid { grid-template-columns: 1fr; }
+      .booking-form { grid-template-columns: 1fr; }
+      .how-header { flex-direction: column; gap: 1rem; }
+      .how-header p { max-width: 100%; }
+      .testimonials-header { flex-direction: column; align-items: flex-start; gap: 1rem; }
+      .rating-summary { text-align: left; }
+      .footer-grid { grid-template-columns: 1fr; gap: 2rem; padding: 2.5rem 1.5rem; }
+      .footer-bottom { flex-direction: column; gap: 0.5rem; text-align: center; padding: 1rem 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ─── NAV ─── -->
+<nav id="main-nav">
+  <a href="#" class="nav-logo">
+    <img src="assets/MCC Logo.jpeg" alt="Marine Craft Cleaners">
+    <div>
+      <div class="nav-logo-name">Marine Craft Cleaners</div>
+      <div class="nav-logo-sub">Treasure Coast · Est. 2024</div>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+    <li><a href="#how-it-works">How It Works</a></li>
+    <li><a href="#why-us">Why Us</a></li>
+    <li><a href="#testimonials">Reviews</a></li>
+    <li><a href="#booking" class="btn-nav-book">Book Now</a></li>
+  </ul>
+  <button class="nav-hamburger" id="hamburger" aria-label="Toggle menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="nav-mobile" id="nav-mobile">
+  <ul>
+    <li><a href="#about">About</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+    <li><a href="#how-it-works">How It Works</a></li>
+    <li><a href="#why-us">Why Us</a></li>
+    <li><a href="#testimonials">Reviews</a></li>
+  </ul>
+  <a href="#booking" class="btn-nav-book">Book Now</a>
+</div>
+
+<!-- ─── HERO ─── -->
+<section class="hero">
+  <div class="hero-atmosphere"></div>
+  <div class="hero-shimmer"></div>
+
+  <!-- Bokeh particles -->
+  <div class="hero-particles" id="particles"></div>
+
+  <!-- Content: two columns -->
+  <div class="hero-content">
+
+    <!-- Left: text -->
+    <div class="hero-left">
+      <div class="hero-eyebrow">Mobile Boat Detailing · Treasure Coast, FL</div>
+      <h1 class="hero-headline">
+        Your Boat.<br>
+        <span class="aqua">Spotless.</span><br>
+        Every Time.
+      </h1>
+      <p class="hero-sub">
+        We come to your slip, dock, or storage. Professional detailing, done right, done when you need it.
+      </p>
+      <div class="hero-ctas">
+        <a href="#booking" class="btn-primary">
+          Book Your Detail
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <a href="#pricing" class="btn-outline">
+          See Pricing
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+        </a>
+      </div>
+      <div class="hero-pills-row">
+        <span class="pill">Wabasso</span>
+        <span class="pill">Vero Beach</span>
+        <span class="pill">Fort Pierce</span>
+        <span class="pill">Port St. Lucie</span>
+        <span class="pill">Stuart</span>
+        <span class="pill">Jupiter/Melbourne: travel fee</span>
+      </div>
+    </div>
+
+    <!-- Right: logo card + stats -->
+    <div class="hero-right">
+      <div class="hero-vis">
+
+        <!-- Logo frosted card -->
+        <div class="hero-logo-card">
+          <img src="assets/MCC Logo.jpeg" alt="Marine Craft Cleaners logo">
+          <div class="hero-logo-card-text">
+            <div class="hero-logo-card-name">Marine Craft Cleaners</div>
+            <div class="hero-logo-card-sub">Treasure Coast · Est. 2024</div>
+            <div class="hero-logo-card-desc">Mobile detailing. We come to your slip, dock, or storage.</div>
+          </div>
+        </div>
+
+        <!-- Stat cards row -->
+        <div class="hero-stats-row">
+          <div class="hero-stat-card">
+            <div class="hero-stat-num">5.0</div>
+            <div class="hero-stat-stars">★★★★★</div>
+            <div class="hero-stat-label">5-Star Rating</div>
+          </div>
+          <div class="hero-stat-card">
+            <div class="hero-stat-num">100%</div>
+            <div class="hero-stat-label">Satisfaction Guaranteed</div>
+          </div>
+          <div class="hero-stat-card">
+            <div class="hero-stat-num">Instant</div>
+            <div class="hero-stat-label">Online Booking</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Animated waves -->
+  <div class="hero-waves">
+    <svg class="wave-svg" style="--wave-speed:14s; opacity:0.18;" viewBox="0 0 2880 120" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,60 C240,20 480,100 720,60 C960,20 1200,100 1440,60 C1680,20 1920,100 2160,60 C2400,20 2640,100 2880,60 L2880,120 L0,120 Z" fill="#5BB8CC"/>
+    </svg>
+    <svg class="wave-svg reverse" style="--wave-speed:18s; opacity:0.12;" viewBox="0 0 2880 120" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,70 C360,30 720,110 1080,70 C1440,30 1800,110 2160,70 C2520,30 2880,110 2880,70 L2880,120 L0,120 Z" fill="#3A9AB0"/>
+    </svg>
+    <svg style="position:absolute;bottom:0;left:0;right:0;width:100%;" viewBox="0 0 1440 64" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,32 C360,64 1080,0 1440,32 L1440,64 L0,64 Z" fill="#F4F0E6"/>
+    </svg>
+  </div>
+</section>
+
+<!-- ─── TRUST STRIP ─── -->
+<div class="trust-strip">
+  <div class="trust-strip-inner">
+    <div class="trust-item"><div class="trust-dot"></div>Locally Owned and Operated</div>
+    <div class="trust-item"><div class="trust-dot"></div>Online Booking, Instant Confirmation</div>
+    <div class="trust-item"><div class="trust-dot"></div>We Come to Your Boat</div>
+    <div class="trust-item"><div class="trust-dot"></div>5-Star Rated</div>
+    <div class="trust-item"><div class="trust-dot"></div>Satisfaction Guaranteed</div>
+  </div>
+</div>
+
+<!-- ─── ABOUT ─── -->
+<section id="about">
+  <div class="section-inner">
+    <div class="about-inner">
+
+      <div class="about-text">
+        <div class="section-eyebrow reveal">The Person Behind The Polish</div>
+        <h2 class="about-title reveal reveal-d1">I grew up on the water.<br>This is more than a job.</h2>
+        <div class="about-body reveal reveal-d2">
+          <p>Growing up in Michigan, I was on boats constantly. Family boats, friends' boats, every summer on the water. Later I worked at <strong>Grand Bay Marine</strong>, where I did everything: cleaning, winterization, repairs, and sales. I learned what boats need, what they endure, and what it really takes to keep them looking right.</p>
+          <p>When I moved to Vero Beach, I brought that same obsession with me. Every boat I work on gets the same treatment I would give my own. I scrub the spots most people skip. I condition the vinyl before the sun cracks it. I notice the grime in the corners and I deal with it. When I leave, your boat doesn't just look clean. It looks right. That is the standard I hold myself to, and it is the only standard I know.</p>
+          <p>I believe <strong>a clean boat means something</strong>. It's confidence pulling into the marina. It's pride when you fire it up on a Saturday morning. It's protecting what you worked hard for. I go the extra mile on every single job because I know exactly how good your boat can look, and I won't stop until it gets there.</p>
+        </div>
+      </div>
+
+      <div class="about-right reveal reveal-d3">
+        <div class="about-philosophy">
+          <div class="about-philosophy-quote">"Cleanliness is next to godliness. A clean boat means ease, happiness, and time well spent on the water."</div>
+          <div class="about-philosophy-attr">Jordan, Owner &middot; Marine Craft Cleaners</div>
+        </div>
+        <div class="about-credentials">
+          <div class="about-cred-item">
+            <div class="about-cred-icon">
+              <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+            </div>
+            <div>
+              <div class="about-cred-label">Experience</div>
+              <div class="about-cred-text">Grand Bay Marine: cleaning, winterization, repairs and sales. Boats since day one.</div>
+            </div>
+          </div>
+          <div class="about-cred-item">
+            <div class="about-cred-icon">
+              <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </div>
+            <div>
+              <div class="about-cred-label">Products</div>
+              <div class="about-cred-text">SKWOL Marine professional-grade kit: ceramic sealant, oxidation remover, vinyl and UV care.</div>
+            </div>
+          </div>
+          <div class="about-cred-item">
+            <div class="about-cred-icon">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            </div>
+            <div>
+              <div class="about-cred-label">The Promise</div>
+              <div class="about-cred-text">Jordan shows up to every job. No crews, no subcontractors. Just personal, consistent care.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ─── PRICING ─── -->
+<section id="pricing">
+  <div class="section-inner">
+    <div class="pricing-header reveal">
+      <div class="section-eyebrow">Transparent Pricing</div>
+      <h2 class="section-title">Clean boat. Clear price.<br>No surprises.</h2>
+      <p>All packages include travel to your location. Pricing is based on boat length. What you see is what you pay.</p>
+    </div>
+
+    <div class="pricing-grid">
+
+      <!-- Package 1 -->
+      <div class="pricing-card reveal reveal-d1">
+        <div class="card-header">
+          <div class="card-tier">Package 01</div>
+          <div class="card-name">The Essential Wash</div>
+          <div class="card-desc">A thorough exterior wash that leaves your hull gleaming and your topside spotless. Done right, every time.</div>
+        </div>
+        <div class="card-prices">
+          <div class="price-note">Starting from</div>
+          <div class="price-row">
+            <span class="price-size">Under 25 ft</span>
+            <span class="price-amount">$100</span>
+          </div>
+          <div class="price-row">
+            <span class="price-size">25 – 35 ft</span>
+            <span class="price-amount">$120</span>
+          </div>
+          <div class="price-row">
+            <span class="price-size">35 ft +</span>
+            <span class="price-amount">$150+</span>
+          </div>
+        </div>
+        <div class="card-features">
+          <ul>
+            <li>Exterior hull wash &amp; rinse</li>
+            <li>Topside &amp; deck wash-down</li>
+            <li>Windows &amp; windshield clean + dry</li>
+            <li>Interior surface wipe-down</li>
+            <li>Dash, console &amp; cupholders</li>
+          </ul>
+        </div>
+        <div class="card-cta">
+          <a href="#booking" class="btn-card btn-card-ghost">Book The Essential Wash</a>
+        </div>
+      </div>
+
+      <!-- Package 2 — FEATURED -->
+      <div class="pricing-card featured reveal reveal-d2">
+        <div class="featured-badge">Most Popular</div>
+        <div class="card-header">
+          <div class="card-tier">Package 02</div>
+          <div class="card-name">The Full Detail</div>
+          <div class="card-desc">Full exterior wash plus a complete interior detail. The refresh your boat has been waiting for.</div>
+        </div>
+        <div class="card-prices">
+          <div class="price-note">Starting from</div>
+          <div class="price-row">
+            <span class="price-size">Under 25 ft</span>
+            <span class="price-amount">$280</span>
+          </div>
+          <div class="price-row">
+            <span class="price-size">25 – 35 ft</span>
+            <span class="price-amount">$360</span>
+          </div>
+          <div class="price-row">
+            <span class="price-size">35 ft +</span>
+            <span class="price-amount">$460+</span>
+          </div>
+        </div>
+        <div class="card-features">
+          <ul>
+            <li>Everything in The Essential Wash</li>
+            <li>Upholstery &amp; vinyl clean + condition</li>
+            <li>UV &amp; mold-resistant vinyl protection</li>
+            <li>Floor &amp; carpet vacuum and scrub</li>
+            <li>Compartments &amp; hatches cleaned out</li>
+            <li>Mildew treatment on seats &amp; cushions</li>
+          </ul>
+        </div>
+        <div class="card-cta">
+          <a href="#booking" class="btn-card btn-card-aqua">Book The Full Detail</a>
+        </div>
+      </div>
+
+      <!-- Package 3 -->
+      <div class="pricing-card reveal reveal-d3">
+        <div class="card-header">
+          <div class="card-tier">Package 03</div>
+          <div class="card-name">The Restoration Detail</div>
+          <div class="card-desc">Full detail plus oxidation removal and ceramic protection. Walk away with a boat that turns heads.</div>
+        </div>
+        <div class="card-prices">
+          <div class="price-note">Starting from</div>
+          <div class="price-row">
+            <span class="price-size">Under 25 ft</span>
+            <span class="price-amount">$500</span>
+          </div>
+          <div class="price-row">
+            <span class="price-size">25 – 35 ft</span>
+            <span class="price-amount">$660</span>
+          </div>
+          <div class="price-row">
+            <span class="price-size">35 ft +</span>
+            <span class="price-amount">Quote</span>
+          </div>
+        </div>
+        <div class="card-features">
+          <ul>
+            <li>Everything in The Full Detail</li>
+            <li>Oxidation removal (light–average)</li>
+            <li>High-gloss gelcoat restoration</li>
+            <li>Ceramic sealant protection (6–8 months)</li>
+            <li>Isinglass &amp; clear vinyl care</li>
+            <li>Heavy oxidation: quoted separately</li>
+          </ul>
+        </div>
+        <div class="card-cta">
+          <a href="#booking" class="btn-card btn-card-ghost">Book The Restoration Detail</a>
+        </div>
+      </div>
+
+    </div>
+
+    <p class="pricing-note reveal">
+      <strong>Not sure which to pick?</strong> Text or call and we'll recommend the right package for your boat's needs.
+      <br>Heavy oxidation quoted case by case after inspection.
+    </p>
+  </div>
+</section>
+
+<!-- ─── HOW IT WORKS ─── -->
+<section id="how-it-works">
+  <div class="section-inner">
+    <div class="how-header">
+      <div class="reveal">
+        <div class="section-eyebrow">Simple Process</div>
+        <h2 class="section-title">Three steps<br>to a clean boat</h2>
+      </div>
+      <p class="reveal reveal-d1">No drop-offs. No hauling. We bring everything to you and handle it all, so you spend more time on the water.</p>
+    </div>
+
+    <div class="steps">
+
+      <div class="step reveal reveal-d1">
+        <div class="step-connector"></div>
+        <div class="step-num">Step 01</div>
+        <div class="step-icon-wrap">
+          <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+        </div>
+        <h3>Book Online</h3>
+        <p>Choose your package, pick a date that works for you, and get instant confirmation. No phone tag, no waiting.</p>
+      </div>
+
+      <div class="step reveal reveal-d2">
+        <div class="step-connector"></div>
+        <div class="step-num">Step 02</div>
+        <div class="step-icon-wrap">
+          <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        </div>
+        <h3>We Come to You</h3>
+        <p>Jordan shows up at your marina, dry-dock, or driveway, fully equipped, on time, ready to work.</p>
+      </div>
+
+      <div class="step reveal reveal-d3">
+        <div class="step-num">Step 03</div>
+        <div class="step-icon-wrap">
+          <svg viewBox="0 0 24 24"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg>
+        </div>
+        <h3>Enjoy Your Boat</h3>
+        <p>Come back to a spotless boat. We'll follow up to make sure everything looks perfect and remind you when it's time for the next service.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ─── WHY US ─── -->
+<section id="why-us">
+  <div class="section-inner">
+    <div class="why-header reveal">
+      <div class="section-eyebrow">Why Choose Us</div>
+      <h2 class="section-title">Built different<br>from the start</h2>
+    </div>
+    <div class="why-grid">
+
+      <div class="why-card reveal reveal-d1">
+        <div class="why-icon">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+        </div>
+        <h3>Book in 2 Minutes</h3>
+        <p>Real-time availability, instant confirmation. No phone calls, no waiting for a callback. Just pick a time and you're set.</p>
+      </div>
+
+      <div class="why-card reveal reveal-d2">
+        <div class="why-icon">
+          <svg viewBox="0 0 24 24"><path d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a2 2 0 01-2-2v-1"/><path d="M15 3H7a2 2 0 00-2 2v6a2 2 0 002 2h2l4 4V3z"/></svg>
+        </div>
+        <h3>Automated Reminders</h3>
+        <p>We'll text you when your boat is due for service again. Never forget a detail. We've got your schedule covered.</p>
+      </div>
+
+      <div class="why-card reveal reveal-d3">
+        <div class="why-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <h3>Down to the Detail</h3>
+        <p>I notice the things most people miss. The crevice by the cleat, the mildew creeping under the cushion lip. Nothing gets overlooked.</p>
+      </div>
+
+      <div class="why-card reveal reveal-d1">
+        <div class="why-icon">
+          <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        </div>
+        <h3>We Come to You</h3>
+        <p>Wherever your boat lives: marina, dry storage, or driveway. We load up the truck and bring everything to you.</p>
+      </div>
+
+      <div class="why-card reveal reveal-d2">
+        <div class="why-icon">
+          <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+        </div>
+        <h3>Satisfaction Guaranteed</h3>
+        <p>Not happy with the result? We come back and make it right, no questions asked. Your satisfaction is the job.</p>
+      </div>
+
+      <div class="why-card reveal reveal-d3">
+        <div class="why-icon">
+          <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.69A2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.91a16 16 0 006.72 6.72l1.27-.33a2 2 0 012.11.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+        </div>
+        <h3>Local &amp; Personal</h3>
+        <p>You're talking to Jordan, the person who will show up and clean your boat. No subcontractors, no surprises.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ─── TESTIMONIALS ─── -->
+<section id="testimonials">
+  <div class="section-inner">
+    <div class="testimonials-header">
+      <div class="reveal">
+        <div class="section-eyebrow">Customer Reviews</div>
+        <h2 class="section-title">What our customers say</h2>
+      </div>
+      <div class="rating-summary reveal reveal-d1">
+        <div class="rating-big">5.0</div>
+        <div class="rating-stars">★★★★★</div>
+        <div class="rating-label">5-Star Rating</div>
+      </div>
+    </div>
+
+    <div class="testimonials-grid">
+
+      <div class="testimonial-card reveal reveal-d1">
+        <div class="t-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+        <p class="t-quote">Best boat cleaning on the Treasure Coast. Jordan is meticulous and professional. My center console looks brand new. I couldn't believe the difference.</p>
+        <div class="t-author">
+          <div class="t-avatar">M</div>
+          <div>
+            <div class="t-name">Mike T.</div>
+            <div class="t-detail">Vero Beach, FL &nbsp;·&nbsp; 24 ft Grady-White</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-card reveal reveal-d2">
+        <div class="t-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+        <p class="t-quote">Booked online in about 2 minutes, Jordan was at my slip exactly on time. The boat has never looked this good. Will be a regular customer for sure.</p>
+        <div class="t-author">
+          <div class="t-avatar">S</div>
+          <div>
+            <div class="t-name">Sarah M.</div>
+            <div class="t-detail">Fort Pierce, FL &nbsp;·&nbsp; 32 ft Sea Ray</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-card reveal reveal-d3">
+        <div class="t-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+        <p class="t-quote">Got The Restoration Detail on my 38-footer. Worth every penny. The oxidation on the hull is completely gone. Won't use anyone else on the Treasure Coast.</p>
+        <div class="t-author">
+          <div class="t-avatar">D</div>
+          <div>
+            <div class="t-name">Dave K.</div>
+            <div class="t-detail">Stuart, FL &nbsp;·&nbsp; 38 ft Bertram</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ─── BOOKING ─── -->
+<section id="booking">
+  <div class="section-inner">
+    <div class="booking-grid">
+
+      <div class="booking-left reveal">
+        <div class="section-eyebrow">Book a Service</div>
+        <h2>Ready for a spotless boat?</h2>
+        <p>Fill out the form and we'll confirm your appointment within a few hours. Or reach out directly. Jordan picks up..</p>
+        <div class="booking-contact">
+          <a href="tel:+18185882669">
+            <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.69A2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.91a16 16 0 006.72 6.72l1.27-.33a2 2 0 012.11.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+            (818) 588-2669
+          </a>
+          <a href="mailto:Contact@marinecraftcleaners.com">
+            <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            Contact@marinecraftcleaners.com
+          </a>
+          <span>
+            <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            Wabasso to Stuart. Travel fee for Jupiter, Juno Beach, and Melbourne.
+          </span>
+        </div>
+      </div>
+
+      <div class="reveal reveal-d2">
+        <form class="booking-form" id="booking-form" novalidate>
+
+          <div class="form-group">
+            <label for="f-name">Full Name</label>
+            <input type="text" id="f-name" name="name" placeholder="Jordan Smith" required>
+          </div>
+
+          <div class="form-group">
+            <label for="f-phone">Phone Number</label>
+            <input type="tel" id="f-phone" name="phone" placeholder="(818) 588-2669" required>
+          </div>
+
+          <div class="form-group">
+            <label for="f-email">Email Address</label>
+            <input type="email" id="f-email" name="email" placeholder="you@example.com" required>
+          </div>
+
+          <div class="form-group">
+            <label for="f-date">Preferred Date</label>
+            <input type="date" id="f-date" name="date" required>
+          </div>
+
+          <div class="form-group">
+            <label for="f-boat">Boat Make &amp; Model</label>
+            <input type="text" id="f-boat" name="boat" placeholder="e.g. Grady-White 226 Fisherman">
+          </div>
+
+          <div class="form-group">
+            <label for="f-length">Boat Length</label>
+            <select id="f-length" name="length" required>
+              <option value="" disabled selected>Select length…</option>
+              <option value="under25">Under 25 ft</option>
+              <option value="25to35">25 – 35 ft</option>
+              <option value="35plus">35 ft +</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="f-service">Service Package</label>
+            <select id="f-service" name="service" required>
+              <option value="" disabled selected>Select package…</option>
+              <option value="essential">The Essential Wash, from $100</option>
+              <option value="fulldetail">The Full Detail, from $280</option>
+              <option value="restoration">The Restoration Detail, from $500</option>
+              <option value="unsure">Not sure yet, help me choose</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="f-location">Marina / Location</label>
+            <input type="text" id="f-location" name="location" placeholder="e.g. Vero Beach City Marina, Slip 14">
+          </div>
+
+          <div class="form-group wide">
+            <label for="f-notes">Additional Notes</label>
+            <textarea id="f-notes" name="notes" placeholder="Any details about your boat's condition, special requests, or questions…"></textarea>
+          </div>
+
+          <button type="submit" class="btn-submit" id="submit-btn">
+            Request Booking
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
+
+          <div class="form-success" id="form-success">
+            <h3>You're all set!</h3>
+            <p>Thanks for reaching out. We'll confirm your booking within a few hours.<br>Questions? Text or call <strong>(818) 588-2669</strong> anytime.</p>
+          </div>
+
+        </form>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ─── FOOTER ─── -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <img src="assets/MCC Logo.jpeg" alt="Marine Craft Cleaners">
+      <p>Mobile boat detailing on the Treasure Coast. We come to you, professional, dependable, and guaranteed.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Services</h4>
+      <ul>
+        <li><a href="#pricing">The Essential Wash</a></li>
+        <li><a href="#pricing">The Full Detail</a></li>
+        <li><a href="#pricing">The Restoration Detail</a></li>
+        <li><a href="#booking">Book Now</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Service Area</h4>
+      <ul>
+        <li><span>Wabasso</span></li>
+        <li><span>Sebastian</span></li>
+        <li><span>Vero Beach</span></li>
+        <li><span>Fort Pierce</span></li>
+        <li><span>Port St. Lucie</span></li>
+        <li><span>Stuart</span></li>
+        <li><span class="footer-area-note">Jupiter, Juno Beach, Melbourne: travel fee</span></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <ul>
+        <li><a href="tel:+18185882669">(818) 588-2669</a></li>
+        <li><a href="mailto:Contact@marinecraftcleaners.com">Contact@marinecraftcleaners.com</a></li>
+        <li><a href="#">Instagram</a></li>
+        <li><a href="#">Facebook</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 Marine Craft Cleaners · Vero Beach, FL</span>
+    <span>Serving the Treasure Coast with pride</span>
+  </div>
+</footer>
+
+<script>
+  /* ─── NAV: scroll behavior ─── */
+  const nav = document.getElementById('main-nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 40);
+  }, { passive: true });
+
+  /* ─── HAMBURGER ─── */
+  const hamburger = document.getElementById('hamburger');
+  const navMobile = document.getElementById('nav-mobile');
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('open');
+    navMobile.classList.toggle('open');
+  });
+  navMobile.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => {
+      hamburger.classList.remove('open');
+      navMobile.classList.remove('open');
+    });
+  });
+
+  /* ─── PARTICLES ─── */
+  const container = document.getElementById('particles');
+  const count = 18;
+  for (let i = 0; i < count; i++) {
+    const p = document.createElement('div');
+    p.className = 'particle';
+    const size = Math.random() * 3 + 1.5;
+    const left = Math.random() * 100;
+    const top = Math.random() * 100;
+    const duration = Math.random() * 12 + 8;
+    const delay = Math.random() * 10;
+    const opacity = Math.random() * 0.3 + 0.08;
+    const rise = Math.random() * 200 + 80;
+    const drift = (Math.random() - 0.5) * 80;
+    p.style.cssText = `
+      width:${size}px; height:${size}px;
+      left:${left}%; top:${top}%;
+      --dur:${duration}s; --delay:${delay}s;
+      --opacity:${opacity}; --rise:${rise}px; --drift:${drift}px;
+    `;
+    container.appendChild(p);
+  }
+
+  /* ─── SCROLL REVEAL ─── */
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('in');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  /* ─── BOOKING FORM ─── */
+  const form = document.getElementById('booking-form');
+  const submitBtn = document.getElementById('submit-btn');
+  const successMsg = document.getElementById('form-success');
+
+  // Set min date to tomorrow
+  const tomorrow = new Date();
+  tomorrow.setDate(tomorrow.getDate() + 1);
+  document.getElementById('f-date').min = tomorrow.toISOString().split('T')[0];
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Sending…';
+
+    // Simulate async submit (replace with real endpoint)
+    await new Promise(r => setTimeout(r, 1200));
+
+    form.querySelectorAll('input, select, textarea').forEach(el => el.style.display = 'none');
+    submitBtn.style.display = 'none';
+    successMsg.classList.add('show');
+  });
+
+  /* ─── SMOOTH SCROLL offset for fixed nav ─── */
+  document.querySelectorAll('a[href^="#"]').forEach(link => {
+    link.addEventListener('click', e => {
+      const target = document.querySelector(link.getAttribute('href'));
+      if (target) {
+        e.preventDefault();
+        const top = target.getBoundingClientRect().top + window.scrollY - 68;
+        window.scrollTo({ top, behavior: 'smooth' });
+      }
+    });
+  });
+</script>
+</body>
+</html>

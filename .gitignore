@@ -1,0 +1,10 @@
+node_modules/
+temporary screenshots/
+.DS_Store
+.claude/
+.agents/
+.vscode/
+*.code-workspace
+skills-lock.json
+package-lock.json
+package.json
