@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Privacy Policy | Marine Craft Cleaners</title>
+  <meta name="description" content="Privacy Policy for Marine Craft Cleaners, mobile boat detailing on the Treasure Coast.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --navy:       #162852;
+      --navy-faint: #0F1F40;
+      --aqua:       #5BB8CC;
+      --aqua-dark:  #3A9AB0;
+      --white:      #FFFFFF;
+      --cream:      #F4F0E6;
+      --cream-dark: #EAE4D6;
+      --text:       #0E1D36;
+      --text-mid:   #4A6678;
+      --text-light: #8AAABB;
+
+      --font-display: 'Cormorant Garamond', Georgia, serif;
+      --font-body:    'DM Sans', system-ui, sans-serif;
+      --ease-out:     cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 18px; }
+    body {
+      font-family: var(--font-body);
+      color: var(--text);
+      background: var(--cream);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body::after {
+      content: '';
+      position: fixed; inset: 0;
+      pointer-events: none; z-index: 9999; opacity: 0.028;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-repeat: repeat; background-size: 300px 300px;
+    }
+
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--navy-faint); }
+    ::-webkit-scrollbar-thumb { background: var(--aqua-dark); border-radius: 3px; }
+
+    /* NAV */
+    nav {
+      position: sticky; top: 0; z-index: 800;
+      height: 84px;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 3rem;
+      background: rgba(14, 29, 54, 0.96);
+      backdrop-filter: blur(14px) saturate(1.3);
+      border-bottom: 1px solid rgba(91, 184, 204, 0.12);
+    }
+    .nav-logo { display: flex; align-items: center; gap: 0.875rem; text-decoration: none; }
+    .nav-logo img { height: 54px; width: auto; border-radius: 6px; }
+    .nav-logo-name {
+      font-family: var(--font-display);
+      font-weight: 700; font-size: 1.4rem;
+      color: var(--white); line-height: 1.1;
+    }
+    .nav-logo-sub {
+      font-size: 0.58rem; font-weight: 600;
+      letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--aqua); display: block; margin-top: 0.1rem;
+    }
+    .nav-back {
+      font-size: 0.8rem; font-weight: 500; letter-spacing: 0.04em;
+      color: var(--aqua); text-decoration: none;
+      display: flex; align-items: center; gap: 0.4rem;
+      transition: color 0.2s ease;
+    }
+    .nav-back:hover { color: var(--white); }
+    .nav-back svg { width: 14px; height: 14px; }
+
+    /* PAGE */
+    .page-header {
+      background: var(--navy-faint);
+      padding: 5rem 3rem 4rem;
+      border-bottom: 1px solid rgba(91,184,204,0.1);
+    }
+    .page-header-inner { max-width: 720px; margin: 0 auto; }
+    .page-label {
+      font-size: 0.65rem; font-weight: 700; letter-spacing: 0.18em;
+      text-transform: uppercase; color: var(--aqua); margin-bottom: 1rem;
+    }
+    .page-title {
+      font-family: var(--font-display);
+      font-size: clamp(2.2rem, 5vw, 3.2rem);
+      font-weight: 700; color: var(--white);
+      line-height: 1.1; letter-spacing: -0.02em;
+    }
+    .page-meta {
+      margin-top: 1rem; font-size: 0.8rem;
+      color: var(--text-light); letter-spacing: 0.03em;
+    }
+
+    /* CONTENT */
+    .content {
+      max-width: 720px; margin: 0 auto;
+      padding: 4rem 3rem 6rem;
+    }
+
+    .content h2 {
+      font-family: var(--font-display);
+      font-size: 1.5rem; font-weight: 700;
+      color: var(--navy); margin-top: 2.8rem; margin-bottom: 0.75rem;
+      letter-spacing: -0.01em;
+    }
+    .content h2:first-child { margin-top: 0; }
+
+    .content p {
+      font-size: 0.94rem; line-height: 1.75;
+      color: var(--text-mid); margin-bottom: 1rem;
+    }
+
+    .content ul {
+      margin: 0.5rem 0 1rem 1.25rem;
+      list-style: disc;
+    }
+    .content ul li {
+      font-size: 0.94rem; line-height: 1.75;
+      color: var(--text-mid); margin-bottom: 0.3rem;
+    }
+
+    .content a {
+      color: var(--aqua-dark); text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+    .content a:hover { color: var(--navy); }
+
+    .divider {
+      border: none; border-top: 1px solid var(--cream-dark);
+      margin: 2rem 0;
+    }
+
+    /* FOOTER */
+    .page-footer {
+      background: var(--navy-faint);
+      border-top: 1px solid rgba(91,184,204,0.08);
+      padding: 2rem 3rem;
+      text-align: center;
+    }
+    .page-footer p {
+      font-size: 0.75rem; color: var(--text-light); letter-spacing: 0.04em;
+    }
+    .page-footer a { color: var(--aqua); text-decoration: none; }
+    .page-footer a:hover { text-decoration: underline; }
+
+    @media (max-width: 768px) {
+      nav { padding: 0 1.25rem; }
+      .page-header { padding: 3.5rem 1.25rem 3rem; }
+      .content { padding: 3rem 1.25rem 5rem; }
+      .page-footer { padding: 2rem 1.25rem; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-logo">
+    <img src="assets/MCC Logo.jpeg" alt="Marine Craft Cleaners logo">
+    <span class="nav-logo-name">
+      Marine Craft Cleaners
+      <span class="nav-logo-sub">Treasure Coast</span>
+    </span>
+  </a>
+  <a href="/" class="nav-back">
+    <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M9 2L4 7l5 5"/>
+    </svg>
+    Back to Home
+  </a>
+</nav>
+
+<div class="page-header">
+  <div class="page-header-inner">
+    <div class="page-label">Legal</div>
+    <h1 class="page-title">Privacy Policy</h1>
+    <p class="page-meta">Effective date: April 21, 2026</p>
+  </div>
+</div>
+
+<div class="content">
+
+  <h2>Overview</h2>
+  <p>Marine Craft Cleaners ("we," "us," or "our") operates marinecraftcleaners.com. This page describes how we collect, use, and protect your personal information when you use our website or request our services.</p>
+
+  <hr class="divider">
+
+  <h2>Information We Collect</h2>
+  <p>We collect information you provide directly when booking a service or contacting us:</p>
+  <ul>
+    <li>Name</li>
+    <li>Email address</li>
+    <li>Phone number</li>
+    <li>Boat details (length, type, location)</li>
+    <li>Preferred service date and package</li>
+    <li>Any notes or messages you include</li>
+  </ul>
+  <p>We also collect non-personal information automatically through cookies and analytics tools, including pages visited, time on site, browser type, and general location (city/region).</p>
+
+  <hr class="divider">
+
+  <h2>How We Use Your Information</h2>
+  <ul>
+    <li>To contact you about your booking request and confirm appointments</li>
+    <li>To send service reminders and follow-up messages</li>
+    <li>To request reviews after a completed service</li>
+    <li>To improve our website and services</li>
+    <li>To measure the effectiveness of our advertising</li>
+  </ul>
+  <p>We do not sell your personal information to any third party.</p>
+
+  <hr class="divider">
+
+  <h2>Google Advertising and Analytics</h2>
+  <p>We use Google Ads and Google Analytics to understand how visitors find and use our site. These services may use cookies to collect information about your visits, including pages viewed and actions taken. Google may use this data to show you relevant ads on other websites.</p>
+  <p>You can opt out of personalized advertising by visiting <a href="https://www.google.com/settings/ads" target="_blank" rel="noopener">Google's Ad Settings</a>, or opt out of Google Analytics by installing the <a href="https://tools.google.com/dlpage/gaoptout" target="_blank" rel="noopener">Google Analytics Opt-out Browser Add-on</a>.</p>
+
+  <hr class="divider">
+
+  <h2>Cookies</h2>
+  <p>Our website uses cookies to support analytics and advertising functions described above. By using our site, you consent to the use of cookies in accordance with this policy. You can disable cookies in your browser settings at any time, though some site features may not function as intended.</p>
+
+  <hr class="divider">
+
+  <h2>Third-Party Services</h2>
+  <p>We use Formspree to process booking form submissions. Your form data is transmitted to and stored by Formspree in accordance with their privacy policy. We do not store form submissions on our own servers.</p>
+
+  <hr class="divider">
+
+  <h2>Data Retention</h2>
+  <p>We retain your contact and booking information only as long as needed to provide services and communicate with you. You may request deletion of your data at any time by contacting us directly.</p>
+
+  <hr class="divider">
+
+  <h2>Children's Privacy</h2>
+  <p>Our website is not directed at children under 13, and we do not knowingly collect personal information from anyone under 13.</p>
+
+  <hr class="divider">
+
+  <h2>Changes to This Policy</h2>
+  <p>We may update this policy from time to time. Changes will be posted on this page with an updated effective date.</p>
+
+  <hr class="divider">
+
+  <h2>Contact</h2>
+  <p>Questions about this policy? Reach us at:</p>
+  <ul>
+    <li>Email: <a href="mailto:Contact@marinecraftcleaners.com">Contact@marinecraftcleaners.com</a></li>
+    <li>Phone: <a href="tel:+18185882669">(818) 588-2669</a></li>
+  </ul>
+
+</div>
+
+<div class="page-footer">
+  <p>Marine Craft Cleaners. Vero Beach, FL. <a href="/">marinecraftcleaners.com</a></p>
+</div>
+
+</body>
+</html>
