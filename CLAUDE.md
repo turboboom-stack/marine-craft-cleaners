@@ -159,7 +159,7 @@ Priced per linear foot of boat length. Modeled after established Florida competi
 | Package | Per Foot | Minimum |
 | --- | --- | --- |
 | The Essential Wash | $4/ft | $100 |
-| The Full Detail | $12/ft | $280 |
+| The Full Detail | $12/ft | $300 |
 | The Restoration Detail | $22/ft | $500 |
 | Heavy Oxidation (add-on) | Custom quote | — |
 
