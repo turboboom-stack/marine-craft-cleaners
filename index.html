@@ -921,7 +921,7 @@
       position: relative; border-radius: 10px; overflow: hidden;
       aspect-ratio: 3/4; cursor: col-resize;
       box-shadow: 0 8px 32px rgba(0,0,0,0.5);
-      -webkit-user-select: none; user-select: none; touch-action: none;
+      -webkit-user-select: none; user-select: none; touch-action: pan-y; cursor: ew-resize;
     }
     .compare-after,
     .compare-before {
@@ -1106,6 +1106,57 @@
   </div>
 </div>
 
+
+<!-- ─── RESULTS ─── -->
+<section id="results">
+  <div class="section-inner">
+    <div class="results-header">
+      <div class="section-eyebrow reveal">Real Results</div>
+      <h2 class="section-title reveal reveal-d1">See the difference<br>for yourself.</h2>
+      <p class="results-subhead reveal reveal-d2">One boat. One job. Hover to reveal.</p>
+    </div>
+
+    <div class="compare-grid">
+
+      <div class="compare-card reveal reveal-d1" data-compare>
+        <img class="compare-after" src="assets/before-after/after1.jpg" alt="After: clean helm and cockpit">
+        <img class="compare-before" src="assets/before-after/before1.jpg" alt="Before: algae on deck surfaces">
+        <div class="compare-handle"><div class="compare-handle-knob"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M7 5l-4 5 4 5M13 5l4 5-4 5" stroke="#0E1D36" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div>
+        <span class="compare-label compare-label-before">Before</span>
+        <span class="compare-label compare-label-after">After</span>
+        <div class="compare-caption">Cockpit Surfaces</div>
+      </div>
+
+      <div class="compare-card reveal reveal-d2" data-compare>
+        <img class="compare-after" src="assets/before-after/after4.jpg" alt="After: clean bow seating">
+        <img class="compare-before" src="assets/before-after/before2.jpg" alt="Before: mold on bow cushions">
+        <div class="compare-handle"><div class="compare-handle-knob"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M7 5l-4 5 4 5M13 5l4 5-4 5" stroke="#0E1D36" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div>
+        <span class="compare-label compare-label-before">Before</span>
+        <span class="compare-label compare-label-after">After</span>
+        <div class="compare-caption">Bow Seating</div>
+      </div>
+
+      <div class="compare-card reveal reveal-d3" data-compare>
+        <img class="compare-after" src="assets/before-after/after2.jpg" alt="After: clean transom deck">
+        <img class="compare-before" src="assets/before-after/before3.jpg" alt="Before: algae on transom deck">
+        <div class="compare-handle"><div class="compare-handle-knob"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M7 5l-4 5 4 5M13 5l4 5-4 5" stroke="#0E1D36" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div>
+        <span class="compare-label compare-label-before">Before</span>
+        <span class="compare-label compare-label-after">After</span>
+        <div class="compare-caption">Transom Deck</div>
+      </div>
+
+      <div class="compare-card reveal reveal-d4" data-compare>
+        <img class="compare-after" src="assets/before-after/after3.jpg" alt="After: spotless captain seats">
+        <img class="compare-before" src="assets/before-after/before4.jpg" alt="Before: heavy mold on captain seats">
+        <div class="compare-handle"><div class="compare-handle-knob"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M7 5l-4 5 4 5M13 5l4 5-4 5" stroke="#0E1D36" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div>
+        <span class="compare-label compare-label-before">Before</span>
+        <span class="compare-label compare-label-after">After</span>
+        <div class="compare-caption">Captain's Seats</div>
+      </div>
+
+    </div>
+  </div>
+</section>
 
 <!-- ─── PRICING ─── -->
 <section id="pricing">
@@ -1503,57 +1554,6 @@
   </div>
 </section>
 
-<!-- ─── RESULTS ─── -->
-<section id="results">
-  <div class="section-inner">
-    <div class="results-header">
-      <div class="section-eyebrow reveal">Real Results</div>
-      <h2 class="section-title reveal reveal-d1">See the difference<br>for yourself.</h2>
-      <p class="results-subhead reveal reveal-d2">One boat. One job. Drag to reveal.</p>
-    </div>
-
-    <div class="compare-grid">
-
-      <div class="compare-card reveal reveal-d1" data-compare>
-        <img class="compare-after" src="assets/before-after/after1.jpg" alt="After: clean helm and cockpit">
-        <img class="compare-before" src="assets/before-after/before1.jpg" alt="Before: algae on deck surfaces">
-        <div class="compare-handle"><div class="compare-handle-knob"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M7 5l-4 5 4 5M13 5l4 5-4 5" stroke="#0E1D36" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div>
-        <span class="compare-label compare-label-before">Before</span>
-        <span class="compare-label compare-label-after">After</span>
-        <div class="compare-caption">Cockpit Surfaces</div>
-      </div>
-
-      <div class="compare-card reveal reveal-d2" data-compare>
-        <img class="compare-after" src="assets/before-after/after4.jpg" alt="After: clean bow seating">
-        <img class="compare-before" src="assets/before-after/before2.jpg" alt="Before: mold on bow cushions">
-        <div class="compare-handle"><div class="compare-handle-knob"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M7 5l-4 5 4 5M13 5l4 5-4 5" stroke="#0E1D36" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div>
-        <span class="compare-label compare-label-before">Before</span>
-        <span class="compare-label compare-label-after">After</span>
-        <div class="compare-caption">Bow Seating</div>
-      </div>
-
-      <div class="compare-card reveal reveal-d3" data-compare>
-        <img class="compare-after" src="assets/before-after/after2.jpg" alt="After: clean transom deck">
-        <img class="compare-before" src="assets/before-after/before3.jpg" alt="Before: algae on transom deck">
-        <div class="compare-handle"><div class="compare-handle-knob"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M7 5l-4 5 4 5M13 5l4 5-4 5" stroke="#0E1D36" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div>
-        <span class="compare-label compare-label-before">Before</span>
-        <span class="compare-label compare-label-after">After</span>
-        <div class="compare-caption">Transom Deck</div>
-      </div>
-
-      <div class="compare-card reveal reveal-d4" data-compare>
-        <img class="compare-after" src="assets/before-after/after3.jpg" alt="After: spotless captain seats">
-        <img class="compare-before" src="assets/before-after/before4.jpg" alt="Before: heavy mold on captain seats">
-        <div class="compare-handle"><div class="compare-handle-knob"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M7 5l-4 5 4 5M13 5l4 5-4 5" stroke="#0E1D36" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div>
-        <span class="compare-label compare-label-before">Before</span>
-        <span class="compare-label compare-label-after">After</span>
-        <div class="compare-caption">Captain's Seats</div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
 <!-- ─── ABOUT ─── -->
 <section id="about">
   <div class="section-inner">
@@ -1746,53 +1746,56 @@
   document.querySelectorAll('[data-compare]').forEach(card => {
     const before = card.querySelector('.compare-before');
     const handle = card.querySelector('.compare-handle');
-    let dragging = false;
+    let rafId = null;
+    let currentPct = 50;
+    let targetPct = 50;
+    let hovering = false;
 
-    function setPos(clientX) {
-      const rect = card.getBoundingClientRect();
-      const pct = Math.max(0, Math.min(100, (clientX - rect.left) / rect.width * 100));
+    function applyPos(pct) {
       before.style.clipPath = `inset(0 ${100 - pct}% 0 0)`;
       handle.style.left = `${pct}%`;
     }
 
-    // Hint nudge on first scroll-into-view
-    const hintObserver = new IntersectionObserver(entries => {
-      entries.forEach(e => {
-        if (!e.isIntersecting) return;
-        hintObserver.unobserve(card);
-        let t0 = null;
-        const DURATION = 550;
-        function nudge(t) {
-          if (!t0) t0 = t;
-          const p = Math.min((t - t0) / DURATION, 1);
-          const ease = p < 0.5 ? 2*p*p : -1+(4-2*p)*p;
-          const pos = 50 + (30 - 50) * ease;
-          before.style.clipPath = `inset(0 ${100 - pos}% 0 0)`;
-          handle.style.left = `${pos}%`;
-          if (p < 1) { requestAnimationFrame(nudge); return; }
-          let t1 = null;
-          function nudgeBack(t) {
-            if (!t1) t1 = t;
-            const p2 = Math.min((t - t1) / DURATION, 1);
-            const e2 = p2 < 0.5 ? 2*p2*p2 : -1+(4-2*p2)*p2;
-            const v = 30 + (50 - 30) * e2;
-            before.style.clipPath = `inset(0 ${100 - v}% 0 0)`;
-            handle.style.left = `${v}%`;
-            if (p2 < 1) requestAnimationFrame(nudgeBack);
-          }
-          requestAnimationFrame(nudgeBack);
-        }
-        setTimeout(() => requestAnimationFrame(nudge), 300);
-      });
-    }, { threshold: 0.4 });
-    hintObserver.observe(card);
+    function lerp(a, b, t) { return a + (b - a) * t; }
 
-    card.addEventListener('mousedown', e => { dragging = true; setPos(e.clientX); e.preventDefault(); });
-    window.addEventListener('mousemove', e => { if (dragging) setPos(e.clientX); });
-    window.addEventListener('mouseup', () => { dragging = false; });
-    card.addEventListener('touchstart', e => { dragging = true; setPos(e.touches[0].clientX); }, { passive: true });
-    card.addEventListener('touchmove', e => { if (dragging) setPos(e.touches[0].clientX); }, { passive: true });
-    card.addEventListener('touchend', () => { dragging = false; });
+    function animate() {
+      currentPct = lerp(currentPct, targetPct, 0.12);
+      applyPos(currentPct);
+      if (Math.abs(currentPct - targetPct) > 0.05) {
+        rafId = requestAnimationFrame(animate);
+      } else {
+        applyPos(targetPct);
+        rafId = null;
+      }
+    }
+
+    function startAnim() {
+      if (!rafId) rafId = requestAnimationFrame(animate);
+    }
+
+    // Mouse hover — follows cursor directly
+    card.addEventListener('mousemove', e => {
+      hovering = true;
+      const rect = card.getBoundingClientRect();
+      targetPct = Math.max(0, Math.min(100, (e.clientX - rect.left) / rect.width * 100));
+      startAnim();
+    });
+
+    // Return to center on leave
+    card.addEventListener('mouseleave', () => {
+      hovering = false;
+      targetPct = 50;
+      startAnim();
+    });
+
+    // Touch — drag to reveal on mobile
+    card.addEventListener('touchmove', e => {
+      const rect = card.getBoundingClientRect();
+      targetPct = Math.max(0, Math.min(100, (e.touches[0].clientX - rect.left) / rect.width * 100));
+      applyPos(targetPct);
+      currentPct = targetPct;
+    }, { passive: true });
+    card.addEventListener('touchend', () => { targetPct = 50; startAnim(); });
   });
 
   /* ─── SMOOTH SCROLL offset for fixed nav ─── */
