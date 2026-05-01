@@ -823,6 +823,85 @@
     }
     .form-success p { font-size: 0.95rem; color: rgba(255,255,255,0.55); line-height: 1.6; }
 
+    /* ─── FORM MODE TOGGLE ─── */
+    .form-mode-toggle {
+      grid-column: 1 / -1;
+      display: flex;
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.12);
+      margin-bottom: 0.25rem;
+    }
+    .form-mode-btn {
+      flex: 1; padding: 0.7rem 1rem;
+      background: transparent; color: rgba(255,255,255,0.45);
+      border: none; cursor: pointer;
+      font-family: var(--font-sans); font-size: 0.78rem;
+      letter-spacing: 0.12em; text-transform: uppercase; font-weight: 600;
+      transition: background 0.2s ease, color 0.2s ease;
+    }
+    .form-mode-btn.active { background: var(--aqua); color: var(--navy); }
+    .form-mode-btn:hover:not(.active) { background: rgba(255,255,255,0.06); color: rgba(255,255,255,0.7); }
+
+    /* ─── CALENDAR WIDGET ─── */
+    .cal-widget {
+      background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 12px; overflow: hidden;
+      -webkit-user-select: none; user-select: none;
+    }
+    .cal-widget-nav {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0.85rem 1rem; border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .cal-nav-btn {
+      background: transparent; border: none; color: rgba(255,255,255,0.5);
+      cursor: pointer; font-size: 1rem; padding: 0.25rem 0.6rem;
+      border-radius: 6px; transition: background 0.15s, color 0.15s;
+    }
+    .cal-nav-btn:hover { background: rgba(255,255,255,0.08); color: var(--white); }
+    .cal-month-label { font-family: var(--font-display); font-size: 1.05rem; color: var(--white); font-weight: 600; }
+    .cal-widget-days {
+      display: grid; grid-template-columns: repeat(7, 1fr);
+      padding: 0.5rem 0.75rem 0;
+    }
+    .cal-widget-grid {
+      display: grid; grid-template-columns: repeat(7, 1fr);
+      gap: 3px; padding: 0.35rem 0.75rem 0.75rem;
+    }
+    .cal-day-header {
+      text-align: center; font-size: 0.63rem; color: rgba(255,255,255,0.3);
+      letter-spacing: 0.1em; text-transform: uppercase; padding-bottom: 0.4rem;
+    }
+    .cal-day {
+      aspect-ratio: 1; display: flex; align-items: center; justify-content: center;
+      border-radius: 6px; font-size: 0.78rem; color: rgba(255,255,255,0.18);
+      position: relative; transition: background 0.15s, color 0.15s;
+    }
+    .cal-day.available { color: var(--white); cursor: pointer; }
+    .cal-day.available:hover { background: rgba(0,212,191,0.18); color: var(--aqua); }
+    .cal-day.partial { color: #fbbf24; cursor: pointer; }
+    .cal-day.partial:hover { background: rgba(251,191,36,0.14); }
+    .cal-day.partial::after {
+      content: ''; position: absolute; bottom: 2px; left: 50%; transform: translateX(-50%);
+      width: 4px; height: 4px; background: #fbbf24; border-radius: 50%;
+    }
+    .cal-day.full, .cal-day.blocked { color: rgba(255,255,255,0.14); cursor: not-allowed; text-decoration: line-through; }
+    .cal-day.past, .cal-day.unavailable { color: rgba(255,255,255,0.14); }
+    .cal-day.selected { background: var(--aqua) !important; color: var(--navy) !important; font-weight: 700; }
+    .cal-day.today-dot { font-weight: 700; }
+    .cal-widget-legend {
+      display: flex; gap: 1.1rem; flex-wrap: wrap;
+      padding: 0.5rem 1rem 0.75rem; border-top: 1px solid rgba(255,255,255,0.06);
+    }
+    .cal-legend-item { display: flex; align-items: center; gap: 0.35rem; font-size: 0.68rem; color: rgba(255,255,255,0.35); }
+    .cal-legend-dot { width: 8px; height: 8px; border-radius: 50%; }
+    .cal-selected-display { margin-top: 0.5rem; font-size: 0.82rem; color: var(--aqua); min-height: 1.2em; }
+    .partial-notice {
+      grid-column: 1 / -1; display: none;
+      font-size: 0.78rem; color: #fbbf24; padding: 0.5rem 0.75rem;
+      background: rgba(251,191,36,0.08); border: 1px solid rgba(251,191,36,0.2); border-radius: 8px;
+    }
+
     /* ─── FOOTER ─── */
     footer {
       background: var(--navy-faint);
@@ -1424,6 +1503,11 @@
       <div class="reveal reveal-d2">
         <form class="booking-form" id="booking-form" novalidate>
 
+          <div class="form-mode-toggle">
+            <button type="button" class="form-mode-btn active" id="toggle-book">Book a Date</button>
+            <button type="button" class="form-mode-btn" id="toggle-quote">Get a Quote</button>
+          </div>
+
           <div class="form-group">
             <label for="f-name">Full Name</label>
             <input type="text" id="f-name" name="name" placeholder="Jordan Smith" required>
@@ -1434,14 +1518,9 @@
             <input type="tel" id="f-phone" name="phone" placeholder="(818) 588-2669" required>
           </div>
 
-          <div class="form-group">
+          <div class="form-group wide">
             <label for="f-email">Email Address</label>
             <input type="email" id="f-email" name="email" placeholder="you@example.com" required>
-          </div>
-
-          <div class="form-group">
-            <label for="f-date">Preferred Date</label>
-            <input type="date" id="f-date" name="date" required>
           </div>
 
           <div class="form-group">
@@ -1459,7 +1538,7 @@
             </select>
           </div>
 
-          <div class="form-group">
+          <div class="form-group wide">
             <label for="f-service">Service Package</label>
             <select id="f-service" name="service" required>
               <option value="" disabled selected>Select package…</option>
@@ -1470,7 +1549,39 @@
             </select>
           </div>
 
-          <div class="form-group">
+          <div class="partial-notice" id="partial-notice">
+            Essential Wash only available on this date. Full days are already booked.
+          </div>
+
+          <div class="form-group wide" id="cal-group">
+            <label>Preferred Date</label>
+            <div class="cal-widget">
+              <div class="cal-widget-nav">
+                <button type="button" class="cal-nav-btn" id="cal-prev">&#8592;</button>
+                <span class="cal-month-label" id="cal-month-label"></span>
+                <button type="button" class="cal-nav-btn" id="cal-next">&#8594;</button>
+              </div>
+              <div class="cal-widget-days">
+                <div class="cal-day-header">Mon</div>
+                <div class="cal-day-header">Tue</div>
+                <div class="cal-day-header">Wed</div>
+                <div class="cal-day-header">Thu</div>
+                <div class="cal-day-header">Fri</div>
+                <div class="cal-day-header">Sat</div>
+                <div class="cal-day-header">Sun</div>
+              </div>
+              <div class="cal-widget-grid" id="cal-grid"></div>
+              <div class="cal-widget-legend">
+                <div class="cal-legend-item"><div class="cal-legend-dot" style="background:rgba(0,212,191,0.7)"></div>Available</div>
+                <div class="cal-legend-item"><div class="cal-legend-dot" style="background:#fbbf24"></div>Partial (Essential only)</div>
+                <div class="cal-legend-item"><div class="cal-legend-dot" style="background:rgba(255,255,255,0.18)"></div>Unavailable</div>
+              </div>
+            </div>
+            <div class="cal-selected-display" id="cal-selected-display"></div>
+            <input type="hidden" id="f-date" name="date">
+          </div>
+
+          <div class="form-group wide">
             <label for="f-location">Marina / Location</label>
             <input type="text" id="f-location" name="location" placeholder="e.g. Vero Beach City Marina, Slip 14">
           </div>
@@ -1487,7 +1598,7 @@
 
           <div class="form-success" id="form-success">
             <h3>You're all set!</h3>
-            <p>Thanks for reaching out. We'll confirm your booking within a few hours.<br>Questions? Text or call <strong>(818) 588-2669</strong> anytime.</p>
+            <p>Thanks for reaching out. We'll confirm your appointment within a few hours.<br>Questions? Text or call <strong>(818) 588-2669</strong> anytime.</p>
           </div>
 
         </form>
@@ -1710,35 +1821,159 @@
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
   /* ─── BOOKING FORM ─── */
+  const API_BASE = 'https://mcc-crm.up.railway.app';
+  const MONTH_NAMES = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+  const PACKAGE_MAP = { essential: 'essential_wash', fulldetail: 'full_detail', restoration: 'restoration_detail', unsure: 'unsure' };
+
   const form = document.getElementById('booking-form');
   const submitBtn = document.getElementById('submit-btn');
   const successMsg = document.getElementById('form-success');
+  const calGroup = document.getElementById('cal-group');
+  const calGrid = document.getElementById('cal-grid');
+  const calMonthLabel = document.getElementById('cal-month-label');
+  const calSelectedDisplay = document.getElementById('cal-selected-display');
+  const fDate = document.getElementById('f-date');
+  const partialNotice = document.getElementById('partial-notice');
+  const serviceSelect = document.getElementById('f-service');
 
-  // Set min date to tomorrow
-  const tomorrow = new Date();
-  tomorrow.setDate(tomorrow.getDate() + 1);
-  document.getElementById('f-date').min = tomorrow.toISOString().split('T')[0];
+  let mode = 'book';
+  let calYear, calMonth;
+  let availability = {};
+  let selectedDate = null;
+  let isPartialDay = false;
+
+  const now = new Date();
+  calYear = now.getFullYear();
+  calMonth = now.getMonth();
+
+  function setMode(m) {
+    mode = m;
+    document.getElementById('toggle-book').classList.toggle('active', m === 'book');
+    document.getElementById('toggle-quote').classList.toggle('active', m === 'quote');
+    calGroup.style.display = m === 'book' ? '' : 'none';
+    fDate.required = m === 'book';
+    const arrowSvg = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>';
+    submitBtn.innerHTML = (m === 'book' ? 'Request Booking ' : 'Send Quote Request ') + arrowSvg;
+    submitBtn.disabled = false;
+    if (m === 'quote') {
+      partialNotice.style.display = 'none';
+      [...serviceSelect.options].forEach(o => { o.disabled = false; o.style.color = ''; });
+    }
+  }
+
+  async function loadMonth(year, month) {
+    calYear = year; calMonth = month;
+    const monthStr = `${year}-${String(month + 1).padStart(2, '0')}`;
+    calMonthLabel.textContent = `${MONTH_NAMES[month]} ${year}`;
+    calGrid.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:1.2rem;color:rgba(255,255,255,0.3);font-size:0.8rem">Loading…</div>';
+    try {
+      const res = await fetch(`${API_BASE}/api/availability?month=${monthStr}`);
+      availability = res.ok ? await res.json() : {};
+    } catch (e) { availability = {}; }
+    renderCal(year, month);
+  }
+
+  function renderCal(year, month) {
+    calGrid.innerHTML = '';
+    let startDow = new Date(year, month, 1).getDay();
+    startDow = startDow === 0 ? 6 : startDow - 1;
+    const daysInMonth = new Date(year, month + 1, 0).getDate();
+    const todayStr = new Date().toISOString().split('T')[0];
+    for (let i = 0; i < startDow; i++) calGrid.insertAdjacentHTML('beforeend', '<div class="cal-day"></div>');
+    for (let d = 1; d <= daysInMonth; d++) {
+      const dateStr = `${year}-${String(month+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
+      const status = availability[dateStr] || 'unavailable';
+      const cell = document.createElement('div');
+      const classes = ['cal-day', status];
+      if (dateStr === todayStr) classes.push('today-dot');
+      if (dateStr === selectedDate) classes.push('selected');
+      cell.className = classes.join(' ');
+      cell.textContent = d;
+      if (status === 'available' || status === 'partial') {
+        cell.addEventListener('click', () => selectDate(dateStr, status));
+      }
+      calGrid.appendChild(cell);
+    }
+  }
+
+  function selectDate(dateStr, status) {
+    selectedDate = dateStr;
+    fDate.value = dateStr;
+    isPartialDay = status === 'partial';
+    renderCal(calYear, calMonth);
+    const d = new Date(dateStr + 'T00:00:00');
+    calSelectedDisplay.style.color = 'var(--aqua)';
+    calSelectedDisplay.textContent = d.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' });
+    partialNotice.style.display = isPartialDay ? '' : 'none';
+    [...serviceSelect.options].forEach(o => {
+      if (isPartialDay && o.value && o.value !== 'essential' && o.value !== 'unsure') {
+        o.disabled = true; o.style.color = 'rgba(255,255,255,0.25)';
+      } else { o.disabled = false; o.style.color = ''; }
+    });
+    if (isPartialDay && serviceSelect.value !== 'essential' && serviceSelect.value !== 'unsure') serviceSelect.value = '';
+  }
+
+  document.getElementById('cal-prev').addEventListener('click', () => {
+    let m = calMonth - 1, y = calYear;
+    if (m < 0) { m = 11; y--; }
+    loadMonth(y, m);
+  });
+  document.getElementById('cal-next').addEventListener('click', () => {
+    let m = calMonth + 1, y = calYear;
+    if (m > 11) { m = 0; y++; }
+    loadMonth(y, m);
+  });
+  document.getElementById('toggle-book').addEventListener('click', () => setMode('book'));
+  document.getElementById('toggle-quote').addEventListener('click', () => setMode('quote'));
+
+  loadMonth(calYear, calMonth);
 
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
+    if (mode === 'book' && !fDate.value) {
+      calSelectedDisplay.style.color = '#f87171';
+      calSelectedDisplay.textContent = 'Please select a date above.';
+      return;
+    }
     submitBtn.disabled = true;
-    submitBtn.textContent = 'Sending…';
-
-    const data = new FormData(form);
-    const res = await fetch('https://formspree.io/f/xaqldydz', {
-      method: 'POST',
-      body: data,
-      headers: { 'Accept': 'application/json' }
-    });
-
-    if (res.ok) {
-      form.querySelectorAll('input, select, textarea').forEach(el => el.style.display = 'none');
-      submitBtn.style.display = 'none';
-      successMsg.classList.add('show');
-    } else {
-      submitBtn.disabled = false;
-      submitBtn.textContent = 'Request Booking';
-      alert('Something went wrong. Please call or text (818) 588-2669 to book.');
+    submitBtn.innerHTML = 'Sending…';
+    const payload = {
+      name: document.getElementById('f-name').value,
+      phone: document.getElementById('f-phone').value,
+      email: document.getElementById('f-email').value,
+      package: PACKAGE_MAP[serviceSelect.value] || serviceSelect.value,
+      boat: document.getElementById('f-boat').value,
+      length: document.getElementById('f-length').value,
+      location: document.getElementById('f-location').value,
+      notes: document.getElementById('f-notes').value,
+    };
+    if (mode === 'book') payload.date = fDate.value;
+    const endpoint = mode === 'book' ? `${API_BASE}/api/bookings` : `${API_BASE}/api/quotes`;
+    try {
+      const res = await fetch(endpoint, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+      if (res.ok) {
+        form.querySelectorAll('input:not([type=hidden]), select, textarea').forEach(el => el.style.display = 'none');
+        form.querySelector('.form-mode-toggle').style.display = 'none';
+        calGroup.style.display = 'none';
+        partialNotice.style.display = 'none';
+        submitBtn.style.display = 'none';
+        successMsg.querySelector('h3').textContent = mode === 'book' ? "You're all set!" : "Quote request sent!";
+        successMsg.querySelector('p').innerHTML = mode === 'book'
+          ? 'Thanks for booking. We\'ll confirm your appointment within a few hours.<br>Questions? Text or call <strong>(818) 588-2669</strong> anytime.'
+          : 'We\'ll send you a personalized quote shortly.<br>Questions? Text or call <strong>(818) 588-2669</strong> anytime.';
+        successMsg.classList.add('show');
+      } else {
+        const err = await res.json().catch(() => ({}));
+        setMode(mode);
+        alert(err.error || 'Something went wrong. Please call or text (818) 588-2669 to book.');
+      }
+    } catch (err) {
+      setMode(mode);
+      alert('Unable to connect. Please call or text (818) 588-2669 to book.');
     }
   });
 
