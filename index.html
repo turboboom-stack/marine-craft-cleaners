@@ -1956,13 +1956,21 @@
         body: JSON.stringify(payload)
       });
       if (res.ok) {
+        // Fire-and-forget to Formspree for email notification
+        const fsData = new FormData();
+        Object.entries(payload).forEach(([k, v]) => fsData.append(k, v || ''));
+        fetch('https://formspree.io/f/xaqldydz', { method: 'POST', body: fsData, headers: { 'Accept': 'application/json' } }).catch(() => {});
+
         form.querySelectorAll('input:not([type=hidden]), select, textarea').forEach(el => el.style.display = 'none');
-        form.querySelector('.form-mode-toggle').style.display = 'none';
-        calGroup.style.display = 'none';
-        partialNotice.style.display = 'none';
+        const toggle = form.querySelector('.form-mode-toggle');
+        if (toggle) toggle.style.display = 'none';
+        if (calGroup) calGroup.style.display = 'none';
+        if (partialNotice) partialNotice.style.display = 'none';
         submitBtn.style.display = 'none';
-        successMsg.querySelector('h3').textContent = mode === 'book' ? "You're all set!" : "Quote request sent!";
-        successMsg.querySelector('p').innerHTML = mode === 'book'
+        const h3 = successMsg.querySelector('h3');
+        const p = successMsg.querySelector('p');
+        if (h3) h3.textContent = mode === 'book' ? "You're all set!" : "Quote request sent!";
+        if (p) p.innerHTML = mode === 'book'
           ? 'Thanks for booking. We\'ll confirm your appointment within a few hours.<br>Questions? Text or call <strong>(818) 588-2669</strong> anytime.'
           : 'We\'ll send you a personalized quote shortly.<br>Questions? Text or call <strong>(818) 588-2669</strong> anytime.';
         successMsg.classList.add('show');
