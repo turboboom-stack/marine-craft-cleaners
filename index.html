@@ -4,6 +4,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Marine Craft Cleaners: Treasure Coast Boat Detailing</title>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18109840448"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'AW-18109840448');
+  </script>
   <meta name="description" content="Mobile boat detailing on the Treasure Coast. We come to your slip, dock, or storage. Online booking, instant confirmation. Serving Wabasso, Sebastian, Vero Beach, Fort Pierce, Port St. Lucie, and Stuart, FL.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -1986,6 +1994,7 @@
           ? 'Thanks for booking. We\'ll confirm your appointment within a few hours.<br>Questions? Text or call <strong>(818) 588-2669</strong> anytime.'
           : 'We\'ll send you a personalized quote shortly.<br>Questions? Text or call <strong>(818) 588-2669</strong> anytime.';
         successMsg.classList.add('show');
+        gtag('event', 'conversion', {'send_to': 'AW-18109840448/iulOCIXJjqAcEMD4uLtD'});
       } else {
         const err = await res.json().catch(() => ({}));
         setMode(mode);
