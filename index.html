@@ -1840,7 +1840,7 @@
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
   /* ─── BOOKING FORM ─── */
-  const API_BASE = 'https://web-production-d3b2e.up.railway.app';
+  const API_BASE = 'https://mcccrm.up.railway.app';
   const MONTH_NAMES = ['January','February','March','April','May','June','July','August','September','October','November','December'];
   const PACKAGE_MAP = { essential: 'essential', fulldetail: 'fulldetail', restoration: 'restoration', unsure: 'unsure' };
 
@@ -1887,8 +1887,27 @@
     calGrid.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:1.2rem;color:rgba(255,255,255,0.3);font-size:0.8rem">Loading…</div>';
     try {
       const res = await fetch(`${API_BASE}/api/availability?month=${monthStr}`);
-      availability = res.ok ? await res.json() : {};
-    } catch (e) { availability = {}; }
+      if (res.ok) {
+        availability = await res.json();
+      } else {
+        // API unreachable — show all weekdays as available so calendar isn't dead
+        availability = {};
+        const dim = new Date(year, month + 1, 0).getDate();
+        for (let d = 1; d <= dim; d++) {
+          const ds = `${year}-${String(month+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
+          const dow = new Date(ds).getDay();
+          if (dow !== 0) availability[ds] = 'available'; // block Sundays only
+        }
+      }
+    } catch (e) {
+      availability = {};
+      const dim = new Date(year, month + 1, 0).getDate();
+      for (let d = 1; d <= dim; d++) {
+        const ds = `${year}-${String(month+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
+        const dow = new Date(ds).getDay();
+        if (dow !== 0) availability[ds] = 'available';
+      }
+    }
     renderCal(year, month);
   }
 
