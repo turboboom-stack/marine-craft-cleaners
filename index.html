@@ -634,6 +634,12 @@
       font-size: 0.92rem; color: var(--text-mid);
     }
     .pricing-note strong { color: var(--text); }
+    .see-results-link {
+      color: var(--aqua); text-decoration: none; font-weight: 600;
+      white-space: nowrap;
+      transition: opacity 0.2s ease;
+    }
+    .see-results-link:hover { opacity: 0.75; }
 
     /* ─── HOW IT WORKS ─── */
     #how-it-works { background: var(--navy); }
@@ -1006,7 +1012,7 @@
     }
     .compare-card {
       position: relative; border-radius: 10px; overflow: hidden;
-      aspect-ratio: 3/4; cursor: col-resize;
+      aspect-ratio: 4/3; cursor: col-resize;
       box-shadow: 0 8px 32px rgba(0,0,0,0.5);
       -webkit-user-select: none; user-select: none; touch-action: pan-y; cursor: ew-resize;
     }
@@ -1072,7 +1078,6 @@
     <li><a href="#how-it-works">How It Works</a></li>
     <li><a href="#why-us">Why Us</a></li>
     <li><a href="#testimonials">Reviews</a></li>
-    <li><a href="#results">Results</a></li>
     <li><a href="#booking" class="btn-nav-book">Book Now</a></li>
   </ul>
   <button class="nav-hamburger" id="hamburger" aria-label="Toggle menu">
@@ -1086,7 +1091,6 @@
     <li><a href="#how-it-works">How It Works</a></li>
     <li><a href="#why-us">Why Us</a></li>
     <li><a href="#testimonials">Reviews</a></li>
-    <li><a href="#results">Results</a></li>
   </ul>
   <a href="#booking" class="btn-nav-book">Book Now</a>
 </div>
@@ -1192,58 +1196,6 @@
     <div class="trust-item"><div class="trust-dot"></div>Satisfaction Guaranteed</div>
   </div>
 </div>
-
-
-<!-- ─── RESULTS ─── -->
-<section id="results">
-  <div class="section-inner">
-    <div class="results-header">
-      <div class="section-eyebrow reveal">Real Results</div>
-      <h2 class="section-title reveal reveal-d1">See the difference<br>for yourself.</h2>
-      <p class="results-subhead reveal reveal-d2">One boat. One job. Hover to reveal.</p>
-    </div>
-
-    <div class="compare-grid">
-
-      <div class="compare-card reveal reveal-d1" data-compare>
-        <img class="compare-after" src="assets/before-after/after3.jpg" alt="After: spotless captain seats">
-        <img class="compare-before" src="assets/before-after/before4.jpg" alt="Before: heavy mold on captain seats">
-        <div class="compare-handle"><div class="compare-handle-knob"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M7 5l-4 5 4 5M13 5l4 5-4 5" stroke="#0E1D36" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div>
-        <span class="compare-label compare-label-before">Before</span>
-        <span class="compare-label compare-label-after">After</span>
-        <div class="compare-caption">Captain's Seats</div>
-      </div>
-
-      <div class="compare-card reveal reveal-d2" data-compare>
-        <img class="compare-after" src="assets/before-after/after4.jpg" alt="After: clean bow seating">
-        <img class="compare-before" src="assets/before-after/before2.jpg" alt="Before: mold on bow cushions">
-        <div class="compare-handle"><div class="compare-handle-knob"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M7 5l-4 5 4 5M13 5l4 5-4 5" stroke="#0E1D36" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div>
-        <span class="compare-label compare-label-before">Before</span>
-        <span class="compare-label compare-label-after">After</span>
-        <div class="compare-caption">Bow Seating</div>
-      </div>
-
-      <div class="compare-card reveal reveal-d3" data-compare>
-        <img class="compare-after" src="assets/before-after/after2.jpg" alt="After: clean transom deck">
-        <img class="compare-before" src="assets/before-after/before3.jpg" alt="Before: algae on transom deck">
-        <div class="compare-handle"><div class="compare-handle-knob"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M7 5l-4 5 4 5M13 5l4 5-4 5" stroke="#0E1D36" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div>
-        <span class="compare-label compare-label-before">Before</span>
-        <span class="compare-label compare-label-after">After</span>
-        <div class="compare-caption">Transom Deck</div>
-      </div>
-
-      <div class="compare-card reveal reveal-d4" data-compare>
-        <img class="compare-after" src="assets/before-after/after1.jpg" alt="After: clean helm and cockpit">
-        <img class="compare-before" src="assets/before-after/before1.jpg" alt="Before: algae on deck surfaces">
-        <div class="compare-handle"><div class="compare-handle-knob"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M7 5l-4 5 4 5M13 5l4 5-4 5" stroke="#0E1D36" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div>
-        <span class="compare-label compare-label-before">Before</span>
-        <span class="compare-label compare-label-after">After</span>
-        <div class="compare-caption">Cockpit Surfaces</div>
-      </div>
-
-    </div>
-  </div>
-</section>
 
 <!-- ─── PRICING ─── -->
 <section id="pricing">
@@ -1372,6 +1324,7 @@
     <p class="pricing-note reveal">
       <strong>Not sure which to pick?</strong> Text or call and we'll recommend the right package for your boat's needs.
       <br>Heavy oxidation quoted case by case after inspection.
+      &nbsp;&middot;&nbsp;<a href="#results" class="see-results-link">See real results</a>
     </p>
   </div>
 </section>
@@ -1733,6 +1686,57 @@
             </div>
           </div>
         </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ─── RESULTS ─── -->
+<section id="results">
+  <div class="section-inner">
+    <div class="results-header">
+      <div class="section-eyebrow reveal">Real Results</div>
+      <h2 class="section-title reveal reveal-d1">Four boats. Real jobs.<br>See the work.</h2>
+      <p class="results-subhead reveal reveal-d2">Hover or drag to reveal the before.</p>
+    </div>
+
+    <div class="compare-grid">
+
+      <div class="compare-card reveal reveal-d1" data-compare>
+        <img class="compare-after" src="assets/before-after/job-002-keywest-239fs/after-3.jpg" alt="After: mirror-polished hull on Key West 239 FS">
+        <img class="compare-before" src="assets/before-after/job-002-keywest-239fs/before-3.jpg" alt="Before: heavy black mold on hull">
+        <div class="compare-handle"><div class="compare-handle-knob"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M7 5l-4 5 4 5M13 5l4 5-4 5" stroke="#0E1D36" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div>
+        <span class="compare-label compare-label-before">Before</span>
+        <span class="compare-label compare-label-after">After</span>
+        <div class="compare-caption">Key West 239 FS &nbsp;&middot;&nbsp; Restoration Detail</div>
+      </div>
+
+      <div class="compare-card reveal reveal-d2" data-compare>
+        <img class="compare-after" src="assets/before-after/job-003-pathfinder-2200v/after-1.jpg" alt="After: clean cockpit on Pathfinder 2200V">
+        <img class="compare-before" src="assets/before-after/job-003-pathfinder-2200v/before-1.jpg" alt="Before: Pathfinder 2200V on trailer before detail">
+        <div class="compare-handle"><div class="compare-handle-knob"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M7 5l-4 5 4 5M13 5l4 5-4 5" stroke="#0E1D36" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div>
+        <span class="compare-label compare-label-before">Before</span>
+        <span class="compare-label compare-label-after">After</span>
+        <div class="compare-caption">Pathfinder 2200V &nbsp;&middot;&nbsp; Restoration Detail</div>
+      </div>
+
+      <div class="compare-card reveal reveal-d3" data-compare>
+        <img class="compare-after" src="assets/before-after/job-004-nauticstar-25xs/after-1.jpg" alt="After: gleaming Nauticstar 25XS bow">
+        <img class="compare-before" src="assets/before-after/job-004-nauticstar-25xs/before-1.jpg" alt="Before: mold and grime on Nauticstar 25XS">
+        <div class="compare-handle"><div class="compare-handle-knob"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M7 5l-4 5 4 5M13 5l4 5-4 5" stroke="#0E1D36" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div>
+        <span class="compare-label compare-label-before">Before</span>
+        <span class="compare-label compare-label-after">After</span>
+        <div class="compare-caption">Nauticstar 25XS &nbsp;&middot;&nbsp; Full Detail</div>
+      </div>
+
+      <div class="compare-card reveal reveal-d4" data-compare>
+        <img class="compare-after" src="assets/before-after/job-007-bluewater-23t/after-1.jpg" alt="After: clean Bluewater 23T cockpit">
+        <img class="compare-before" src="assets/before-after/job-007-bluewater-23t/before-1.jpg" alt="Before: dirty Bluewater 23T deck">
+        <div class="compare-handle"><div class="compare-handle-knob"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M7 5l-4 5 4 5M13 5l4 5-4 5" stroke="#0E1D36" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div>
+        <span class="compare-label compare-label-before">Before</span>
+        <span class="compare-label compare-label-after">After</span>
+        <div class="compare-caption">Bluewater 23T &nbsp;&middot;&nbsp; Essential Wash</div>
       </div>
 
     </div>
