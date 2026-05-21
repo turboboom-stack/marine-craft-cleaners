@@ -993,66 +993,68 @@
     }
     .mobile-book-bar { display: none; }
 
-    /* ─── RESULTS / COMPARE ─── */
+    /* ─── RESULTS / JOB TILES ─── */
     #results { background: var(--navy-faint); }
     .results-header { max-width: 560px; margin-bottom: 3rem; }
     #results .section-eyebrow { color: var(--aqua); }
     #results .section-title { color: var(--white); }
     .results-subhead { color: var(--text-light); margin-top: 0.75rem; font-size: 0.9rem; letter-spacing: 0.04em; }
 
-    .compare-grid {
+    .jobs-grid {
       display: grid; grid-template-columns: repeat(2, 1fr);
       gap: 1.25rem;
     }
-    .compare-card {
+    .job-tile {
+      display: block; text-decoration: none;
       position: relative; border-radius: 10px; overflow: hidden;
-      aspect-ratio: 3/4; cursor: col-resize;
-      box-shadow: 0 8px 32px rgba(0,0,0,0.5);
-      -webkit-user-select: none; user-select: none; touch-action: pan-y; cursor: ew-resize;
+      aspect-ratio: 4/3;
+      background: var(--navy);
+      box-shadow: 0 6px 28px rgba(0,0,0,0.45);
     }
-    .compare-after,
-    .compare-before {
-      position: absolute; inset: 0;
+    .job-tile-img {
       width: 100%; height: 100%;
       object-fit: cover; object-position: center;
-      pointer-events: none; display: block;
+      display: block;
+      transition: transform 0.5s cubic-bezier(0.25,0.46,0.45,0.94);
     }
-    .compare-before { z-index: 2; clip-path: inset(0 50% 0 0); }
-    .compare-handle {
-      position: absolute; top: 0; bottom: 0; left: 50%;
-      transform: translateX(-50%);
-      z-index: 10; width: 3px;
-      background: var(--white);
-      box-shadow: 0 0 16px rgba(0,0,0,0.6);
+    .job-tile:hover .job-tile-img { transform: scale(1.05); }
+    .job-tile-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(9,18,38,0.88) 0%, rgba(9,18,38,0.1) 50%, transparent 100%);
+      transition: background 0.3s ease;
     }
-    .compare-handle-knob {
-      position: absolute; top: 50%; left: 50%;
-      transform: translate(-50%, -50%);
-      width: 44px; height: 44px; border-radius: 50%;
-      background: var(--white);
-      box-shadow: 0 2px 16px rgba(0,0,0,0.5);
-      display: flex; align-items: center; justify-content: center;
+    .job-tile:hover .job-tile-overlay {
+      background: linear-gradient(to top, rgba(9,18,38,0.94) 0%, rgba(9,18,38,0.2) 55%, transparent 100%);
     }
-    .compare-label {
-      position: absolute; z-index: 5; top: 1rem;
-      padding: 0.28rem 0.7rem;
-      font-family: var(--font-body);
-      font-size: 0.58rem; font-weight: 700; letter-spacing: 0.14em;
-      text-transform: uppercase; border-radius: 4px;
-      pointer-events: none; transition: opacity 0.25s ease;
+    .job-tile-content {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      padding: 1.5rem 1.25rem 1.25rem;
     }
-    .compare-label-before { left: 1rem; background: rgba(0,0,0,0.65); color: var(--white); }
-    .compare-label-after  { right: 1rem; background: rgba(91,184,204,0.9); color: var(--navy-faint); }
-    .compare-caption {
-      position: absolute; bottom: 0; left: 0; right: 0; z-index: 6;
-      padding: 3rem 1.25rem 1rem;
-      background: linear-gradient(to top, rgba(14,29,54,0.85) 0%, transparent 100%);
-      font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em;
-      text-transform: uppercase; color: var(--white);
-      pointer-events: none;
+    .job-tile-package {
+      display: inline-block;
+      font-family: var(--font-body); font-size: 0.58rem; font-weight: 700;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      padding: 0.2rem 0.6rem; border-radius: 3px;
+      background: rgba(91,184,204,0.9); color: var(--navy-faint);
+      margin-bottom: 0.45rem;
     }
+    .job-tile-name {
+      display: block;
+      font-family: var(--font-display); font-size: 1.45rem; font-weight: 600;
+      color: var(--white); line-height: 1.15;
+    }
+    .job-tile-cta {
+      display: flex; align-items: center; gap: 0.35rem;
+      margin-top: 0.6rem;
+      font-family: var(--font-body); font-size: 0.7rem; font-weight: 500;
+      letter-spacing: 0.05em; color: rgba(255,255,255,0.5);
+      transition: color 0.25s ease;
+    }
+    .job-tile:hover .job-tile-cta { color: var(--aqua); }
+    .job-tile-cta svg { transition: transform 0.25s ease; }
+    .job-tile:hover .job-tile-cta svg { transform: translateX(3px); }
     @media (max-width: 768px) {
-      .compare-grid { grid-template-columns: 1fr; }
+      .jobs-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -1194,57 +1196,6 @@
 </div>
 
 
-<!-- ─── RESULTS ─── -->
-<section id="results">
-  <div class="section-inner">
-    <div class="results-header">
-      <div class="section-eyebrow reveal">Real Results</div>
-      <h2 class="section-title reveal reveal-d1">See the difference<br>for yourself.</h2>
-      <p class="results-subhead reveal reveal-d2">One boat. One job. Hover to reveal.</p>
-    </div>
-
-    <div class="compare-grid">
-
-      <div class="compare-card reveal reveal-d1" data-compare>
-        <img class="compare-after" src="assets/before-after/after3.jpg" alt="After: spotless captain seats">
-        <img class="compare-before" src="assets/before-after/before4.jpg" alt="Before: heavy mold on captain seats">
-        <div class="compare-handle"><div class="compare-handle-knob"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M7 5l-4 5 4 5M13 5l4 5-4 5" stroke="#0E1D36" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div>
-        <span class="compare-label compare-label-before">Before</span>
-        <span class="compare-label compare-label-after">After</span>
-        <div class="compare-caption">Captain's Seats</div>
-      </div>
-
-      <div class="compare-card reveal reveal-d2" data-compare>
-        <img class="compare-after" src="assets/before-after/after4.jpg" alt="After: clean bow seating">
-        <img class="compare-before" src="assets/before-after/before2.jpg" alt="Before: mold on bow cushions">
-        <div class="compare-handle"><div class="compare-handle-knob"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M7 5l-4 5 4 5M13 5l4 5-4 5" stroke="#0E1D36" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div>
-        <span class="compare-label compare-label-before">Before</span>
-        <span class="compare-label compare-label-after">After</span>
-        <div class="compare-caption">Bow Seating</div>
-      </div>
-
-      <div class="compare-card reveal reveal-d3" data-compare>
-        <img class="compare-after" src="assets/before-after/after2.jpg" alt="After: clean transom deck">
-        <img class="compare-before" src="assets/before-after/before3.jpg" alt="Before: algae on transom deck">
-        <div class="compare-handle"><div class="compare-handle-knob"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M7 5l-4 5 4 5M13 5l4 5-4 5" stroke="#0E1D36" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div>
-        <span class="compare-label compare-label-before">Before</span>
-        <span class="compare-label compare-label-after">After</span>
-        <div class="compare-caption">Transom Deck</div>
-      </div>
-
-      <div class="compare-card reveal reveal-d4" data-compare>
-        <img class="compare-after" src="assets/before-after/after1.jpg" alt="After: clean helm and cockpit">
-        <img class="compare-before" src="assets/before-after/before1.jpg" alt="Before: algae on deck surfaces">
-        <div class="compare-handle"><div class="compare-handle-knob"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M7 5l-4 5 4 5M13 5l4 5-4 5" stroke="#0E1D36" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div>
-        <span class="compare-label compare-label-before">Before</span>
-        <span class="compare-label compare-label-after">After</span>
-        <div class="compare-caption">Cockpit Surfaces</div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
 <!-- ─── PRICING ─── -->
 <section id="pricing">
   <div class="section-inner">
@@ -1373,6 +1324,61 @@
       <strong>Not sure which to pick?</strong> Text or call and we'll recommend the right package for your boat's needs.
       <br>Heavy oxidation quoted case by case after inspection.
     </p>
+  </div>
+</section>
+
+<!-- ─── RESULTS ─── -->
+<section id="results">
+  <div class="section-inner">
+    <div class="results-header">
+      <div class="section-eyebrow reveal">Real Results</div>
+      <h2 class="section-title reveal reveal-d1">Real jobs.<br>Real results.</h2>
+      <p class="results-subhead reveal reveal-d2">Each example below is a real service on a real boat. Click any tile to see the full before and after.</p>
+    </div>
+
+    <div class="jobs-grid">
+
+      <a class="job-tile reveal reveal-d1" href="gallery/keywest-239fs.html">
+        <img class="job-tile-img" src="assets/before-after/job-002-keywest-239fs/after-3.jpg" alt="Key West 239 FS after Restoration Detail">
+        <div class="job-tile-overlay"></div>
+        <div class="job-tile-content">
+          <span class="job-tile-package">Restoration Detail</span>
+          <span class="job-tile-name">Key West 239 FS</span>
+          <div class="job-tile-cta">View gallery <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+        </div>
+      </a>
+
+      <a class="job-tile reveal reveal-d2" href="gallery/pathfinder-2200v.html">
+        <img class="job-tile-img" src="assets/before-after/job-003-pathfinder-2200v/after-1.jpg" alt="Pathfinder 2200V after Restoration Detail">
+        <div class="job-tile-overlay"></div>
+        <div class="job-tile-content">
+          <span class="job-tile-package">Restoration Detail</span>
+          <span class="job-tile-name">Pathfinder 2200V</span>
+          <div class="job-tile-cta">View gallery <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+        </div>
+      </a>
+
+      <a class="job-tile reveal reveal-d3" href="gallery/nauticstar-25xs.html">
+        <img class="job-tile-img" src="assets/before-after/job-004-nauticstar-25xs/after-1.jpg" alt="Nauticstar 25XS after Full Detail">
+        <div class="job-tile-overlay"></div>
+        <div class="job-tile-content">
+          <span class="job-tile-package">Full Detail</span>
+          <span class="job-tile-name">Nauticstar 25XS</span>
+          <div class="job-tile-cta">View gallery <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+        </div>
+      </a>
+
+      <a class="job-tile reveal reveal-d4" href="gallery/bluewater-23t.html">
+        <img class="job-tile-img" src="assets/before-after/job-007-bluewater-23t/after-1.jpg" alt="Bluewater 23T after Essential Wash">
+        <div class="job-tile-overlay"></div>
+        <div class="job-tile-content">
+          <span class="job-tile-package">Essential Wash</span>
+          <span class="job-tile-name">Bluewater 23T</span>
+          <div class="job-tile-cta">View gallery <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+        </div>
+      </a>
+
+    </div>
   </div>
 </section>
 
@@ -2023,62 +2029,6 @@
       setMode(mode);
       alert('Unable to connect. Please call or text (818) 588-2669 to book.');
     }
-  });
-
-  /* ─── BEFORE/AFTER COMPARE SLIDERS ─── */
-  document.querySelectorAll('[data-compare]').forEach(card => {
-    const before = card.querySelector('.compare-before');
-    const handle = card.querySelector('.compare-handle');
-    let rafId = null;
-    let currentPct = 50;
-    let targetPct = 50;
-    let hovering = false;
-
-    function applyPos(pct) {
-      before.style.clipPath = `inset(0 ${100 - pct}% 0 0)`;
-      handle.style.left = `${pct}%`;
-    }
-
-    function lerp(a, b, t) { return a + (b - a) * t; }
-
-    function animate() {
-      currentPct = lerp(currentPct, targetPct, 0.12);
-      applyPos(currentPct);
-      if (Math.abs(currentPct - targetPct) > 0.05) {
-        rafId = requestAnimationFrame(animate);
-      } else {
-        applyPos(targetPct);
-        rafId = null;
-      }
-    }
-
-    function startAnim() {
-      if (!rafId) rafId = requestAnimationFrame(animate);
-    }
-
-    // Mouse hover — follows cursor directly
-    card.addEventListener('mousemove', e => {
-      hovering = true;
-      const rect = card.getBoundingClientRect();
-      targetPct = Math.max(0, Math.min(100, (e.clientX - rect.left) / rect.width * 100));
-      startAnim();
-    });
-
-    // Return to center on leave
-    card.addEventListener('mouseleave', () => {
-      hovering = false;
-      targetPct = 50;
-      startAnim();
-    });
-
-    // Touch — drag to reveal on mobile
-    card.addEventListener('touchmove', e => {
-      const rect = card.getBoundingClientRect();
-      targetPct = Math.max(0, Math.min(100, (e.touches[0].clientX - rect.left) / rect.width * 100));
-      applyPos(targetPct);
-      currentPct = targetPct;
-    }, { passive: true });
-    card.addEventListener('touchend', () => { targetPct = 50; startAnim(); });
   });
 
   /* ─── SMOOTH SCROLL offset for fixed nav ─── */
