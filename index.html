@@ -595,6 +595,7 @@
       font-size: 1.1rem; font-weight: 700; color: var(--navy);
     }
     .featured .price-amount { color: var(--aqua-dark); }
+    .price-quote { font-family: var(--font-body); font-size: 0.78rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-mid); }
 
     .card-features {
       padding: 1.25rem 1.75rem 1.5rem;
@@ -1202,7 +1203,7 @@
     <div class="pricing-header reveal">
       <div class="section-eyebrow">Transparent Pricing</div>
       <h2 class="section-title">Clean boat. Clear price.<br>No surprises.</h2>
-      <p>All packages include travel to your location. Pricing is based on boat length. What you see is what you pay.</p>
+      <p>All packages include travel to your location. The Essential Wash is flat-rate by size. Detail packages are priced per foot for boats up to 25 ft. Larger boats quoted directly.</p>
     </div>
 
     <div class="pricing-grid">
@@ -1252,18 +1253,14 @@
           <div class="card-desc">Full exterior wash plus a complete interior detail. The refresh your boat has been waiting for.</div>
         </div>
         <div class="card-prices">
-          <div class="price-note">Starting from</div>
+          <div class="price-note">Priced per linear foot</div>
           <div class="price-row">
-            <span class="price-size">Under 25 ft</span>
-            <span class="price-amount">$300</span>
+            <span class="price-size">Up to 25 ft</span>
+            <span class="price-amount">$12 / ft</span>
           </div>
           <div class="price-row">
-            <span class="price-size">25 – 35 ft</span>
-            <span class="price-amount">$360</span>
-          </div>
-          <div class="price-row">
-            <span class="price-size">35 ft +</span>
-            <span class="price-amount">$460+</span>
+            <span class="price-size">Over 25 ft</span>
+            <span class="price-amount price-quote">Quote</span>
           </div>
         </div>
         <div class="card-features">
@@ -1289,18 +1286,14 @@
           <div class="card-desc">Full detail plus oxidation removal and ceramic protection. Walk away with a boat that turns heads.</div>
         </div>
         <div class="card-prices">
-          <div class="price-note">Starting from</div>
+          <div class="price-note">Priced per linear foot</div>
           <div class="price-row">
-            <span class="price-size">Under 25 ft</span>
-            <span class="price-amount">$500</span>
+            <span class="price-size">Up to 25 ft</span>
+            <span class="price-amount">$22 / ft</span>
           </div>
           <div class="price-row">
-            <span class="price-size">25 – 35 ft</span>
-            <span class="price-amount">$660</span>
-          </div>
-          <div class="price-row">
-            <span class="price-size">35 ft +</span>
-            <span class="price-amount">Quote</span>
+            <span class="price-size">Over 25 ft</span>
+            <span class="price-amount price-quote">Quote</span>
           </div>
         </div>
         <div class="card-features">
@@ -1322,7 +1315,7 @@
 
     <p class="pricing-note reveal">
       <strong>Not sure which to pick?</strong> Text or call and we'll recommend the right package for your boat's needs.
-      <br>Heavy oxidation quoted case by case after inspection.
+      <br>Boats over 25 ft and heavy oxidation are quoted case by case after a quick look.
     </p>
   </div>
 </section>
@@ -1557,8 +1550,8 @@
             <select id="f-service" name="service" required>
               <option value="" disabled selected>Select package…</option>
               <option value="essential">The Essential Wash, from $100</option>
-              <option value="fulldetail">The Full Detail, from $300</option>
-              <option value="restoration">The Restoration Detail, from $500</option>
+              <option value="fulldetail">The Full Detail, $12/ft (up to 25 ft)</option>
+              <option value="restoration">The Restoration Detail, $22/ft (up to 25 ft)</option>
               <option value="unsure">Not sure yet, help me choose</option>
             </select>
           </div>
