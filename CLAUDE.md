@@ -154,21 +154,16 @@ Marine Craft Cleaners is a solo mobile boat cleaning/detailing service based in 
 
 ## Pricing
 
-Priced per linear foot of boat length. Modeled after established Florida competitors; slightly below market as MCC builds its reputation.
+Flat-rate starting figures by boat size tier, shown directly on the site (no "request a quote" wall except for heavy oxidation and 35ft+ Restoration jobs). This display format replaced a per-foot/quote model that correlated with a drop in bookings.
 
-| Package | Per Foot | Minimum |
-| --- | --- | --- |
-| The Essential Wash | $4/ft | $100 |
-| The Full Detail | $12/ft | $300 |
-| The Restoration Detail | $22/ft | $500 |
-| Heavy Oxidation (add-on) | Custom quote | — |
+| Package | Under 25 ft | 25 – 35 ft | 35 ft + |
+| --- | --- | --- | --- |
+| The Essential Wash | $100 | $120 | $150+ |
+| The Full Detail | $375 | $450 | $525+ |
+| The Restoration Detail | $625 | $750 | Quote |
+| Heavy Oxidation (add-on) | Custom quote | Custom quote | Custom quote |
 
 **Reference benchmarks (Florida Boat Detailing, Central FL):**
 
 - Basic wash: $3.50/ft | Detail: $14/ft | Premium + compound + sealant: $52/ft
 - MCC prices sit competitively below given solo/mobile operation and startup stage
-
-**Example quotes:**
-
-- 22ft boat — Essential: $100 (min) | Full Detail: $264 | Restoration: $484
-- 25ft boat — Essential: $100 | Full Detail: $300 | Restoration: $550
