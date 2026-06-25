@@ -994,6 +994,81 @@
     }
     .mobile-book-bar { display: none; }
 
+    /* ─── SERVICE AREA CALLOUT ─── */
+    .service-area {
+      background: var(--navy);
+      position: relative;
+      overflow: hidden;
+      border-top: 1px solid rgba(91,184,204,0.12);
+      border-bottom: 1px solid rgba(91,184,204,0.12);
+    }
+    .service-area-bg-text {
+      position: absolute;
+      top: 50%; right: -1rem;
+      transform: translateY(-50%);
+      font-family: var(--font-display);
+      font-size: clamp(7rem, 18vw, 17rem);
+      font-weight: 700; font-style: italic;
+      color: rgba(91,184,204,0.045);
+      line-height: 1; pointer-events: none;
+      white-space: nowrap; letter-spacing: -0.04em;
+      user-select: none;
+    }
+    .service-area-inner {
+      max-width: 1200px; margin: 0 auto;
+      padding: 5rem 3rem;
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 5rem; align-items: center;
+      position: relative; z-index: 2;
+    }
+    .service-area-headline {
+      font-family: var(--font-display);
+      font-size: clamp(2.8rem, 5.5vw, 5rem);
+      font-weight: 700; font-style: italic;
+      color: var(--white);
+      line-height: 0.95; letter-spacing: -0.025em;
+      margin-bottom: 1.25rem;
+    }
+    .service-area-headline .sa-aqua { color: var(--aqua); }
+    .service-area-sub {
+      font-size: 1rem; color: rgba(255,255,255,0.5);
+      line-height: 1.7; max-width: 380px;
+    }
+    .service-area-right { display: flex; flex-direction: column; gap: 1.25rem; }
+    .sa-zone-label {
+      font-size: 0.63rem; font-weight: 700;
+      letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 0.65rem;
+    }
+    .sa-zone-label.free { color: var(--aqua); }
+    .sa-cities { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+    .sa-city {
+      padding: 0.38rem 0.85rem; border-radius: 100px;
+      background: rgba(91,184,204,0.1); border: 1px solid rgba(91,184,204,0.25);
+      font-size: 0.86rem; color: rgba(255,255,255,0.82); font-weight: 500;
+    }
+    .sa-fee-card {
+      background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.09);
+      border-radius: 10px; padding: 1.1rem 1.25rem;
+      display: flex; align-items: center; gap: 0.85rem;
+    }
+    .sa-fee-icon {
+      width: 36px; height: 36px; border-radius: 8px; flex-shrink: 0;
+      background: rgba(200,137,42,0.1); border: 1px solid rgba(200,137,42,0.18);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .sa-fee-icon svg {
+      width: 18px; height: 18px; stroke: var(--brass); fill: none;
+      stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round;
+    }
+    .sa-fee-text { font-size: 0.9rem; color: rgba(255,255,255,0.52); line-height: 1.55; }
+    .sa-fee-text strong { color: rgba(255,255,255,0.78); font-weight: 600; }
+    .sa-eyebrow { color: var(--aqua); }
+    @media (max-width: 768px) {
+      .service-area-inner { grid-template-columns: 1fr; gap: 2.5rem; padding: 4rem 1.5rem; }
+      .service-area-sub { max-width: 100%; }
+      .service-area-bg-text { font-size: 5rem; right: -0.5rem; }
+    }
+
     /* ─── RESULTS / JOB TILES ─── */
     #results { background: var(--navy-faint); }
     .results-header { max-width: 560px; margin-bottom: 3rem; }
@@ -1196,6 +1271,47 @@
   </div>
 </div>
 
+
+<!-- ─── SERVICE AREA CALLOUT ─── -->
+<section class="service-area">
+  <div class="service-area-bg-text">Florida</div>
+  <div class="service-area-inner">
+
+    <div class="reveal">
+      <div class="section-eyebrow sa-eyebrow">Service Area</div>
+      <h2 class="service-area-headline">
+        Serving<br>
+        All of<br>
+        <span class="sa-aqua">Florida.</span>
+      </h2>
+      <p class="service-area-sub">
+        We travel anywhere in the state. No hauling, no drop-offs. Jordan comes to your slip, dock, or dry storage wherever that is in Florida.
+      </p>
+    </div>
+
+    <div class="service-area-right reveal reveal-d2">
+      <div>
+        <div class="sa-zone-label free">No Travel Fee</div>
+        <div class="sa-cities">
+          <span class="sa-city">Wabasso</span>
+          <span class="sa-city">Vero Beach</span>
+          <span class="sa-city">Fort Pierce</span>
+          <span class="sa-city">Port St. Lucie</span>
+          <span class="sa-city">Stuart</span>
+        </div>
+      </div>
+      <div class="sa-fee-card">
+        <div class="sa-fee-icon">
+          <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        </div>
+        <div class="sa-fee-text">
+          <strong>All other Florida locations</strong> — travel fee applies, quoted at booking.
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
 
 <!-- ─── PRICING ─── -->
 <section id="pricing">
