@@ -2147,6 +2147,29 @@
     }
   });
 
+  /* ─── PRE-FILL from a personalized email link (?c=token) ─── */
+  (async function prefillFromEmailLink() {
+    const token = new URLSearchParams(window.location.search).get('c');
+    if (!token) return;
+    try {
+      const res = await fetch(`${API_BASE}/api/prefill/${encodeURIComponent(token)}`);
+      if (!res.ok) return;
+      const d = await res.json();
+      const fill = (id, value) => {
+        const el = document.getElementById(id);
+        if (el && value && !el.value) el.value = value;
+      };
+      fill('f-name', d.name);
+      fill('f-phone', d.phone);
+      fill('f-email', d.email);
+      fill('f-boat', d.boat);
+      fill('f-location', d.location);
+      fill('f-notes', d.notes);
+      const length = document.getElementById('f-length');
+      if (d.length && [...length.options].some(o => o.value === d.length)) length.value = d.length;
+    } catch (err) { /* the form still works empty */ }
+  })();
+
   /* ─── SMOOTH SCROLL offset for fixed nav ─── */
   document.querySelectorAll('a[href^="#"]').forEach(link => {
     link.addEventListener('click', e => {
