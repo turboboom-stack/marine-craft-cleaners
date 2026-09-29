@@ -61,7 +61,7 @@
 
     /* ─── RESET ─── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; font-size: 18px; }
+    html { scroll-behavior: smooth; font-size: 18px; scroll-padding-top: 84px; }
     body {
       font-family: var(--font-body);
       color: var(--text);
@@ -765,6 +765,85 @@
     .t-name { font-size: 0.92rem; font-weight: 600; color: var(--navy); }
     .t-detail { font-size: 0.75rem; color: var(--text-light); }
 
+    /* ─── SUBMIT A REVIEW ─── */
+    .reviews-cta {
+      margin-top: 3rem; padding-top: 2.25rem; border-top: 1px solid var(--cream-dark);
+      display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; flex-wrap: wrap;
+    }
+    .reviews-cta-text {
+      font-family: var(--font-display); font-size: 1.3rem; font-style: italic; font-weight: 600;
+      color: var(--navy);
+    }
+    .btn-review {
+      display: inline-flex; align-items: center; gap: 0.5rem; flex-shrink: 0;
+      background: transparent; color: var(--navy);
+      padding: 0.8rem 1.6rem; border-radius: 5px;
+      font-family: var(--font-body); font-weight: 600; font-size: 0.85rem; letter-spacing: 0.03em;
+      border: 1.5px solid rgba(0,0,0,0.14); cursor: pointer;
+      transition: border-color 0.2s ease, background 0.2s ease, transform 0.15s var(--ease-spring);
+    }
+    .btn-review:hover { background: var(--cream); border-color: var(--navy); transform: translateY(-1px); }
+    .btn-review svg { stroke: currentColor; fill: none; stroke-width: 1.75; stroke-linecap: round; transition: transform 0.25s var(--ease-out); }
+    .btn-review.open svg { transform: rotate(45deg); }
+
+    .rv-form-wrap {
+      max-height: 0; overflow: hidden; opacity: 0;
+      transition: max-height 0.5s var(--ease-out), opacity 0.4s ease;
+    }
+    .rv-form-wrap.open { max-height: 1000px; opacity: 1; }
+    .rv-form {
+      margin-top: 2rem; padding: 2rem;
+      background: var(--cream); border: 1px solid var(--cream-dark); border-radius: 10px;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;
+    }
+    .rv-field { display: flex; flex-direction: column; gap: 0.35rem; }
+    .rv-field.wide { grid-column: 1 / -1; }
+    .rv-field label {
+      font-size: 0.66rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-light);
+    }
+    .rv-field .optional { text-transform: none; letter-spacing: 0; font-weight: 400; }
+    .rv-form input, .rv-form textarea {
+      background: var(--white); border: 1.5px solid var(--cream-dark); border-radius: 5px;
+      padding: 0.7rem 0.9rem; font-family: var(--font-body); font-size: 0.92rem; color: var(--text);
+      outline: none; width: 100%; transition: border-color 0.2s ease;
+    }
+    .rv-form input::placeholder, .rv-form textarea::placeholder { color: var(--text-light); opacity: 0.8; }
+    .rv-form input:focus, .rv-form textarea:focus { border-color: var(--aqua); }
+    .rv-form textarea { min-height: 100px; resize: vertical; }
+
+    .star-picker { display: flex; gap: 0.25rem; }
+    .star-btn {
+      background: none; border: none; cursor: pointer; padding: 0; line-height: 1;
+      font-size: 2rem; color: var(--cream-dark);
+      transition: color 0.15s ease, transform 0.15s var(--ease-spring);
+    }
+    .star-btn:hover { transform: scale(1.12); }
+    .star-btn.filled { color: var(--brass); }
+
+    .rv-honeypot { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+
+    .rv-error { grid-column: 1 / -1; font-size: 0.82rem; color: #b91c1c; min-height: 1.1em; }
+
+    .rv-submit {
+      grid-column: 1 / -1; justify-self: start; margin-top: 0.15rem;
+      background: var(--aqua); color: var(--navy-faint); border: none;
+      padding: 0.85rem 2.1rem; border-radius: 5px;
+      font-family: var(--font-body); font-size: 0.88rem; font-weight: 700; letter-spacing: 0.04em;
+      cursor: pointer;
+      box-shadow: 0 4px 16px rgba(91,184,204,0.3);
+      transition: background 0.2s ease, transform 0.15s var(--ease-spring), box-shadow 0.2s ease;
+    }
+    .rv-submit:hover { background: var(--aqua-light); transform: translateY(-2px); }
+    .rv-submit:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+
+    .rv-success {
+      grid-column: 1 / -1; display: none; padding: 1.5rem; text-align: center;
+      background: rgba(91,184,204,0.08); border: 1.5px solid rgba(91,184,204,0.25); border-radius: 8px;
+    }
+    .rv-success.show { display: block; }
+    .rv-success h3 { font-family: var(--font-display); font-size: 1.3rem; font-style: italic; color: var(--aqua-dark); margin-bottom: 0.3rem; }
+    .rv-success p { font-size: 0.9rem; color: var(--text-mid); line-height: 1.55; }
+
     /* ─── BOOKING ─── */
     #booking { background: var(--navy-faint); }
     .booking-grid {
@@ -968,6 +1047,7 @@
       .step-connector { display: none; }
       .why-grid { grid-template-columns: repeat(2, 1fr); }
       .testimonials-grid { grid-template-columns: 1fr; }
+      .rv-form { grid-template-columns: 1fr; }
       .booking-grid { grid-template-columns: 1fr; gap: 3rem; }
       .footer-grid { grid-template-columns: 1fr 1fr; }
     }
@@ -985,6 +1065,8 @@
       .how-header { flex-direction: column; gap: 1rem; }
       .how-header p { max-width: 100%; }
       .testimonials-header { flex-direction: column; align-items: flex-start; gap: 1rem; }
+      .reviews-cta { flex-direction: column; align-items: flex-start; }
+      .btn-review { width: 100%; justify-content: center; }
       .rating-summary { text-align: left; }
       .footer-grid { grid-template-columns: 1fr; gap: 2rem; padding: 2.5rem 1.5rem; }
       .footer-bottom { flex-direction: column; gap: 0.5rem; text-align: center; padding: 1rem 1.5rem; }
@@ -1340,7 +1422,7 @@
     <div class="pricing-grid">
 
       <!-- Package 1 -->
-      <div class="pricing-card reveal reveal-d1">
+      <div class="pricing-card reveal reveal-d1" id="essential-wash">
         <div class="card-header">
           <div class="card-tier">Package 01</div>
           <div class="card-name">The Essential Wash</div>
@@ -1376,7 +1458,7 @@
       </div>
 
       <!-- Package 2 — FEATURED -->
-      <div class="pricing-card featured reveal reveal-d2">
+      <div class="pricing-card featured reveal reveal-d2" id="full-detail">
         <div class="featured-badge">Most Popular</div>
         <div class="card-header">
           <div class="card-tier">Package 02</div>
@@ -1414,7 +1496,7 @@
       </div>
 
       <!-- Package 3 -->
-      <div class="pricing-card reveal reveal-d3">
+      <div class="pricing-card reveal reveal-d3" id="restoration-detail">
         <div class="card-header">
           <div class="card-tier">Package 03</div>
           <div class="card-name">The Restoration Detail</div>
@@ -1774,13 +1856,13 @@
         <h2 class="section-title">What our customers say</h2>
       </div>
       <div class="rating-summary reveal reveal-d1">
-        <div class="rating-big">5.0</div>
-        <div class="rating-stars">★★★★★</div>
-        <div class="rating-label">5-Star Rating</div>
+        <div class="rating-big" id="rating-big">5.0</div>
+        <div class="rating-stars" id="rating-stars">★★★★★</div>
+        <div class="rating-label" id="rating-label">5-Star Rating</div>
       </div>
     </div>
 
-    <div class="testimonials-grid">
+    <div class="testimonials-grid" id="testimonials-grid">
 
       <div class="testimonial-card reveal reveal-d1">
         <div class="t-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
@@ -1819,6 +1901,57 @@
       </div>
 
     </div>
+
+    <div class="reviews-cta reveal reveal-d4">
+      <div class="reviews-cta-text">Had a great experience? We'd love to hear about it.</div>
+      <button type="button" class="btn-review" id="review-toggle">
+        <span id="review-toggle-label">Share Your Experience</span>
+        <svg width="16" height="16" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>
+      </button>
+    </div>
+
+    <div class="rv-form-wrap" id="rv-form-wrap">
+      <form class="rv-form" id="rv-form" novalidate>
+        <div class="rv-field wide">
+          <label>Your Rating</label>
+          <div class="star-picker" id="star-picker">
+            <button type="button" class="star-btn" data-value="1" aria-label="1 star">★</button>
+            <button type="button" class="star-btn" data-value="2" aria-label="2 stars">★</button>
+            <button type="button" class="star-btn" data-value="3" aria-label="3 stars">★</button>
+            <button type="button" class="star-btn" data-value="4" aria-label="4 stars">★</button>
+            <button type="button" class="star-btn" data-value="5" aria-label="5 stars">★</button>
+          </div>
+        </div>
+        <div class="rv-field">
+          <label for="rv-name">Your Name</label>
+          <input type="text" id="rv-name" placeholder="Jordan Smith" required>
+        </div>
+        <div class="rv-field">
+          <label for="rv-email">Email <span class="optional">(never shown publicly)</span></label>
+          <input type="email" id="rv-email" placeholder="you@example.com" required>
+        </div>
+        <div class="rv-field">
+          <label for="rv-boat">Boat Make &amp; Model <span class="optional">(optional)</span></label>
+          <input type="text" id="rv-boat" placeholder="e.g. Grady-White 226 Fisherman">
+        </div>
+        <div class="rv-field">
+          <label for="rv-location">Location <span class="optional">(optional)</span></label>
+          <input type="text" id="rv-location" placeholder="e.g. Vero Beach, FL">
+        </div>
+        <div class="rv-field wide">
+          <label for="rv-body">Your Review</label>
+          <textarea id="rv-body" placeholder="Tell us how it went…" required></textarea>
+        </div>
+        <input type="text" id="rv-website" class="rv-honeypot" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <div class="rv-error" id="rv-error"></div>
+        <button type="submit" class="rv-submit" id="rv-submit-btn">Submit Review</button>
+        <div class="rv-success" id="rv-success">
+          <h3>Thank you!</h3>
+          <p>Your review has been submitted. It'll appear here once Jordan approves it.</p>
+        </div>
+      </form>
+    </div>
+
   </div>
 </section>
 
@@ -1975,6 +2108,16 @@
   }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
 
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  /* A direct link to an anchor (e.g. #essential-wash) scrolls there immediately, but if
+     the target is a .reveal card its entrance transform (translateY 28px -> 0) settles
+     ~0.7s later and leaves the page scrolled slightly short. Re-align once it's done. */
+  try {
+    if (location.hash) {
+      const hashTarget = document.querySelector(location.hash);
+      if (hashTarget) setTimeout(() => hashTarget.scrollIntoView({ block: 'start' }), 850);
+    }
+  } catch (err) { /* not a valid selector; nothing to realign */ }
 
   /* ─── BOOKING FORM ─── */
   const API_BASE = 'https://mcccrm.up.railway.app';
@@ -2187,6 +2330,116 @@
       const length = document.getElementById('f-length');
       if (d.length && [...length.options].some(o => o.value === d.length)) length.value = d.length;
     } catch (err) { /* the form still works empty */ }
+  })();
+
+  /* ─── CUSTOMER REVIEWS: live testimonials + submission form ─── */
+  (function reviewsSection() {
+    const grid = document.getElementById('testimonials-grid');
+    const ratingBig = document.getElementById('rating-big');
+    const ratingStars = document.getElementById('rating-stars');
+    const ratingLabel = document.getElementById('rating-label');
+
+    function starString(rating) {
+      const filled = Math.round(rating);
+      return '★'.repeat(filled) + '☆'.repeat(5 - filled);
+    }
+    function escapeHtml(s) {
+      return s.replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+    }
+
+    // Live reviews from the CRM replace the 3 example cards above. If none are
+    // approved yet (or the CRM can't be reached), the example cards stay as-is.
+    (async function loadReviews() {
+      try {
+        const res = await fetch(`${API_BASE}/api/reviews`);
+        if (!res.ok) return;
+        const data = await res.json();
+        if (!data.reviews || !data.reviews.length) return;
+
+        grid.innerHTML = data.reviews.map(r => `
+          <div class="testimonial-card">
+            <div class="t-stars">${'<span>★</span>'.repeat(r.rating)}${'<span style="color:var(--cream-dark)">★</span>'.repeat(5 - r.rating)}</div>
+            <p class="t-quote">${escapeHtml(r.body)}</p>
+            <div class="t-author">
+              <div class="t-avatar">${escapeHtml(r.name.charAt(0).toUpperCase())}</div>
+              <div>
+                <div class="t-name">${escapeHtml(r.name)}</div>
+                <div class="t-detail">${escapeHtml([r.location, r.boat].filter(Boolean).join(' · '))}</div>
+              </div>
+            </div>
+          </div>
+        `).join('');
+
+        ratingBig.textContent = data.average.toFixed(1);
+        ratingStars.textContent = starString(data.average);
+        ratingLabel.textContent = `Based on ${data.count} review${data.count === 1 ? '' : 's'}`;
+      } catch (err) { /* keep the example reviews shown in the page */ }
+    })();
+
+    // Star-rating picker
+    const stars = [...document.querySelectorAll('.star-btn')];
+    let selectedRating = 0;
+    function paintStars(upTo) {
+      stars.forEach(s => s.classList.toggle('filled', Number(s.dataset.value) <= upTo));
+    }
+    stars.forEach(s => {
+      s.addEventListener('click', () => { selectedRating = Number(s.dataset.value); paintStars(selectedRating); });
+      s.addEventListener('mouseenter', () => paintStars(Number(s.dataset.value)));
+    });
+    document.getElementById('star-picker').addEventListener('mouseleave', () => paintStars(selectedRating));
+
+    // Toggle the submission form
+    const toggleBtn = document.getElementById('review-toggle');
+    const toggleLabel = document.getElementById('review-toggle-label');
+    const formWrap = document.getElementById('rv-form-wrap');
+    toggleBtn.addEventListener('click', () => {
+      const open = formWrap.classList.toggle('open');
+      toggleBtn.classList.toggle('open', open);
+      toggleLabel.textContent = open ? 'Close' : 'Share Your Experience';
+      if (open) formWrap.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    });
+
+    // Submit
+    const form = document.getElementById('rv-form');
+    const errorEl = document.getElementById('rv-error');
+    const submitBtn = document.getElementById('rv-submit-btn');
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      errorEl.textContent = '';
+      if (!selectedRating) { errorEl.textContent = 'Please select a star rating.'; return; }
+
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Sending…';
+      try {
+        const res = await fetch(`${API_BASE}/api/reviews`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+          body: JSON.stringify({
+            name: document.getElementById('rv-name').value,
+            email: document.getElementById('rv-email').value,
+            rating: selectedRating,
+            body: document.getElementById('rv-body').value,
+            boat: document.getElementById('rv-boat').value,
+            location: document.getElementById('rv-location').value,
+            website: document.getElementById('rv-website').value, // honeypot
+          }),
+        });
+        if (res.ok) {
+          form.querySelectorAll('.rv-field, .rv-honeypot').forEach(el => el.style.display = 'none');
+          submitBtn.style.display = 'none';
+          document.getElementById('rv-success').classList.add('show');
+        } else {
+          const err = await res.json().catch(() => ({}));
+          errorEl.textContent = err.error || 'Something went wrong. Please try again or call/text (818) 588-2669.';
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'Submit Review';
+        }
+      } catch (err) {
+        errorEl.textContent = 'Unable to connect. Please try again or call/text (818) 588-2669.';
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Submit Review';
+      }
+    });
   })();
 
   /* ─── SMOOTH SCROLL offset for fixed nav ─── */
