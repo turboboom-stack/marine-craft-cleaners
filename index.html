@@ -12,6 +12,21 @@
     gtag('js', new Date());
     gtag('config', 'AW-18109840448');
   </script>
+  <!-- Event snippet for Book appointment conversion page -->
+  <script>
+    function gtag_report_conversion(url) {
+      var callback = function () {
+        if (typeof(url) != 'undefined') {
+          window.location = url;
+        }
+      };
+      gtag('event', 'conversion', {
+          'send_to': 'AW-18109840448/tmIzCPbl1oodEMD4uLtD',
+          'event_callback': callback
+      });
+      return false;
+    }
+  </script>
   <meta name="description" content="Mobile boat detailing serving all of Florida. We come to your slip, dock, or storage. Online booking, instant confirmation. Home base in Vero Beach. No travel fee for Wabasso, Vero Beach, Fort Pierce, Port St. Lucie, and Stuart. Travel fee applies for all other FL locations.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -2135,7 +2150,11 @@
           ? 'Thanks for booking. We\'ll confirm your appointment within a few hours.<br>Questions? Text or call <strong>(818) 588-2669</strong> anytime.'
           : 'We\'ll send you a personalized quote shortly.<br>Questions? Text or call <strong>(818) 588-2669</strong> anytime.';
         successMsg.classList.add('show');
-        gtag('event', 'conversion', {'send_to': 'AW-18109840448/iulOCIXJjqAcEMD4uLtD'});
+        if (mode === 'book') {
+          gtag_report_conversion();
+        } else {
+          gtag('event', 'conversion', {'send_to': 'AW-18109840448/iulOCIXJjqAcEMD4uLtD'});
+        }
       } else {
         const err = await res.json().catch(() => ({}));
         setMode(mode);
