@@ -763,6 +763,21 @@
       color: var(--aqua-dark); cursor: pointer;
     }
     .t-more-btn:hover { text-decoration: underline; }
+
+    .t-results { margin-top: -0.2rem; }
+    .t-results-thumbs { display: flex; align-items: center; gap: 0.45rem; margin-bottom: 0.5rem; }
+    .t-results-thumbs img {
+      width: 68px; height: 50px; object-fit: cover; border-radius: 5px;
+      border: 1px solid var(--cream-dark);
+    }
+    .t-results-arrow { color: var(--aqua-dark); font-size: 0.95rem; flex-shrink: 0; }
+    .t-results-link {
+      display: inline-flex; align-items: center; gap: 0.35rem;
+      font-family: var(--font-body); font-size: 0.78rem; font-weight: 700;
+      letter-spacing: 0.02em; color: var(--aqua-dark); text-decoration: none;
+    }
+    .t-results-link:hover { text-decoration: underline; }
+    .t-results-link svg { stroke: currentColor; }
     .t-author {
       display: flex; align-items: center; gap: 0.75rem;
       padding-top: 0.9rem; border-top: 1px solid var(--cream-dark);
@@ -1603,6 +1618,16 @@
         </div>
       </a>
 
+      <a class="job-tile reveal reveal-d1" href="gallery/searay-260-sundancer.html">
+        <img class="job-tile-img" src="assets/before-after/job-0020-searay-260-sundancer/after-2.jpg" alt="Sea Ray 260 Sundancer after Full Detail">
+        <div class="job-tile-overlay"></div>
+        <div class="job-tile-content">
+          <span class="job-tile-package">Full Detail</span>
+          <span class="job-tile-name">Sea Ray 260 Sundancer</span>
+          <div class="job-tile-cta">View gallery <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+        </div>
+      </a>
+
     </div>
   </div>
 </section>
@@ -2375,6 +2400,16 @@
             <div class="t-stars">${'<span>★</span>'.repeat(r.rating)}${'<span style="color:var(--cream-dark)">★</span>'.repeat(5 - r.rating)}</div>
             <p class="t-quote t-quote-clamp">${escapeHtml(r.body)}</p>
             <button type="button" class="t-more-btn">Show more</button>
+            ${r.before_photo_url && r.after_photo_url ? `
+            <div class="t-results">
+              <div class="t-results-thumbs">
+                <img src="${escapeHtml(r.before_photo_url)}" alt="Before photo" loading="lazy">
+                <span class="t-results-arrow">→</span>
+                <img src="${escapeHtml(r.after_photo_url)}" alt="After photo" loading="lazy">
+              </div>
+              ${r.results_url ? `<a class="t-results-link" href="${escapeHtml(r.results_url)}" target="_blank" rel="noopener">Show Results <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>` : ''}
+            </div>
+            ` : ''}
             <div class="t-author">
               <div class="t-avatar">${escapeHtml(r.name.charAt(0).toUpperCase())}</div>
               <div>
