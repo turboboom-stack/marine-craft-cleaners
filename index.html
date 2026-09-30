@@ -752,6 +752,17 @@
       font-size: 3rem; color: var(--aqua); line-height: 0;
       vertical-align: -0.6rem; margin-right: 0.05rem;
     }
+    .t-quote.t-quote-clamp {
+      display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 5;
+      overflow: hidden;
+    }
+    .t-more-btn {
+      display: none; align-self: flex-start;
+      background: none; border: none; padding: 0;
+      font-family: var(--font-body); font-size: 0.82rem; font-weight: 600;
+      color: var(--aqua-dark); cursor: pointer;
+    }
+    .t-more-btn:hover { text-decoration: underline; }
     .t-author {
       display: flex; align-items: center; gap: 0.75rem;
       padding-top: 0.9rem; border-top: 1px solid var(--cream-dark);
@@ -1866,7 +1877,8 @@
 
       <div class="testimonial-card reveal reveal-d1">
         <div class="t-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
-        <p class="t-quote">Best boat cleaning on the Treasure Coast. Jordan is meticulous and professional. My center console looks brand new. I couldn't believe the difference.</p>
+        <p class="t-quote t-quote-clamp">Best boat cleaning on the Treasure Coast. Jordan is meticulous and professional. My center console looks brand new. I couldn't believe the difference.</p>
+        <button type="button" class="t-more-btn">Show more</button>
         <div class="t-author">
           <div class="t-avatar">M</div>
           <div>
@@ -1878,7 +1890,8 @@
 
       <div class="testimonial-card reveal reveal-d2">
         <div class="t-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
-        <p class="t-quote">Booked online in about 2 minutes, Jordan was at my slip exactly on time. The boat has never looked this good. Will be a regular customer for sure.</p>
+        <p class="t-quote t-quote-clamp">Booked online in about 2 minutes, Jordan was at my slip exactly on time. The boat has never looked this good. Will be a regular customer for sure.</p>
+        <button type="button" class="t-more-btn">Show more</button>
         <div class="t-author">
           <div class="t-avatar">S</div>
           <div>
@@ -1890,7 +1903,8 @@
 
       <div class="testimonial-card reveal reveal-d3">
         <div class="t-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
-        <p class="t-quote">Got The Restoration Detail on my 38-footer. Worth every penny. The oxidation on the hull is completely gone. Won't use anyone else on the Treasure Coast.</p>
+        <p class="t-quote t-quote-clamp">Got The Restoration Detail on my 38-footer. Worth every penny. The oxidation on the hull is completely gone. Won't use anyone else on the Treasure Coast.</p>
+        <button type="button" class="t-more-btn">Show more</button>
         <div class="t-author">
           <div class="t-avatar">D</div>
           <div>
@@ -2359,7 +2373,8 @@
         grid.innerHTML = data.reviews.map(r => `
           <div class="testimonial-card">
             <div class="t-stars">${'<span>★</span>'.repeat(r.rating)}${'<span style="color:var(--cream-dark)">★</span>'.repeat(5 - r.rating)}</div>
-            <p class="t-quote">${escapeHtml(r.body)}</p>
+            <p class="t-quote t-quote-clamp">${escapeHtml(r.body)}</p>
+            <button type="button" class="t-more-btn">Show more</button>
             <div class="t-author">
               <div class="t-avatar">${escapeHtml(r.name.charAt(0).toUpperCase())}</div>
               <div>
@@ -2374,7 +2389,25 @@
         ratingStars.textContent = starString(data.average);
         ratingLabel.textContent = `Based on ${data.count} review${data.count === 1 ? '' : 's'}`;
       } catch (err) { /* keep the example reviews shown in the page */ }
+      initReviewClamps();
     })();
+
+    // Clamp each review to 5 lines, with a "Show more" toggle for ones that overflow.
+    // Runs for the 3 example cards on load, and again once real reviews replace them.
+    function initReviewClamps() {
+      grid.querySelectorAll('.testimonial-card').forEach(card => {
+        const quote = card.querySelector('.t-quote');
+        const btn = card.querySelector('.t-more-btn');
+        if (!quote || !btn) return;
+        requestAnimationFrame(() => {
+          btn.style.display = quote.scrollHeight > quote.clientHeight + 1 ? 'inline-block' : 'none';
+        });
+        btn.onclick = () => {
+          btn.textContent = quote.classList.toggle('t-quote-clamp') ? 'Show more' : 'Show less';
+        };
+      });
+    }
+    initReviewClamps();
 
     // Star-rating picker
     const stars = [...document.querySelectorAll('.star-btn')];
