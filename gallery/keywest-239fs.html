@@ -62,7 +62,26 @@
       display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.75rem;
     }
     .g-item { position: relative; border-radius: 7px; overflow: hidden; background: var(--navy-faint); }
-    .g-item img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .g-item img { width: 100%; height: 100%; object-fit: cover; display: block; cursor: zoom-in; transition: transform 0.2s; }
+    .g-item img:hover { transform: scale(1.03); }
+
+    .lightbox {
+      display: none; position: fixed; inset: 0; z-index: 1000;
+      background: rgba(15,31,64,0.92); padding: 4vh 4vw;
+      align-items: center; justify-content: center;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .lightbox.open { display: flex; }
+    .lightbox img { max-width: 100%; max-height: 100%; object-fit: contain; border-radius: 6px; cursor: default; }
+    .lightbox-close {
+      position: absolute; top: 1.25rem; right: 1.5rem;
+      width: 40px; height: 40px; border-radius: 50%;
+      background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.25);
+      color: var(--white); font-size: 1.3rem; line-height: 1; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.2s;
+    }
+    .lightbox-close:hover { background: rgba(255,255,255,0.2); }
     .g-label {
       position: absolute; top: 0.6rem; left: 0.6rem;
       font-family: var(--font-body); font-size: 0.54rem; font-weight: 700; letter-spacing: 0.14em;
@@ -95,7 +114,7 @@
 <body>
 
 <nav class="g-nav">
-  <a href="/" class="g-back">
+  <a href="/#results" class="g-back">
     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
     Back
   </a>
@@ -144,5 +163,31 @@
   <a href="/#booking" class="g-book">Book This Service</a>
 </div>
 
+<div class="lightbox" id="lightbox">
+  <button type="button" class="lightbox-close" id="lightbox-close" aria-label="Close">&times;</button>
+  <img id="lightbox-img" src="" alt="Full size photo">
+</div>
+
+<script>
+  (function () {
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+    function open(src, alt) {
+      lightboxImg.src = src;
+      lightboxImg.alt = alt || '';
+      lightbox.classList.add('open');
+    }
+    function close() {
+      lightbox.classList.remove('open');
+      lightboxImg.src = '';
+    }
+    document.querySelectorAll('.g-item img').forEach(img => {
+      img.addEventListener('click', () => open(img.src, img.alt));
+    });
+    document.getElementById('lightbox-close').addEventListener('click', close);
+    lightbox.addEventListener('click', e => { if (e.target === lightbox) close(); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') close(); });
+  })();
+</script>
 </body>
 </html>

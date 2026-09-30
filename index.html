@@ -2534,6 +2534,13 @@
       }
     });
   });
+
+  /* Leaving for a results gallery: mark this page's history entry as #results
+     first, so the browser's native Back button returns here instead of the top
+     (the gallery pages' own "Back" link already points at /#results directly). */
+  document.querySelectorAll('.job-tile').forEach(tile => {
+    tile.addEventListener('click', () => history.replaceState(null, '', '#results'));
+  });
 </script>
 
 <div class="mobile-book-bar"><a href="#booking">Book Now</a></div>
